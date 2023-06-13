@@ -1,0 +1,421 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(0, 0, 30);
+    color: white;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(79, 163, 163);
+    height: 12vh;
+    position: sticky;
+    top: 0;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+
+}
+
+nav ul li {
+    list-style: none;
+    margin: 0 19px;
+    padding: 4px 2px;
+    font-size: 1.7rem;
+
+
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: rgb(0, 33, 61);
+    text-shadow: 0px 0px 7px white;
+}
+
+nav ul li a:hover {
+    font-size: 1.9rem;
+    color: rgb(255, 255, 255);
+    text-shadow: 0px 0px 7px white;
+}
+
+.left {
+    font-size: 2.5rem;
+    color: white;
+    text-shadow: 0px 0px 11px white;
+
+}
+
+.blue {
+    color: aqua;
+    text-shadow: 0px 0px 11px aqua;
+}
+
+#element {
+    color: aqua;
+    text-shadow: 0px 0px 11px aqua;
+
+
+}
+
+.buttons {
+
+    margin: 15px 0
+}
+
+#btn,
+#btns {
+    font-size: 1.2rem;
+    background-color: aqua;
+    color: rgb(11, 11, 11);
+    border: 2px solid rgb(14, 14, 14);
+    text-shadow: 0px 0px 11px aqua;
+    cursor: pointer;
+    padding: 21px;
+    margin: 0 11px;
+    border-radius: 10px;
+}
+
+#btn:hover {
+    background-color: black;
+    color: aqua;
+    border: 2px solid aqua;
+    transform: scale(1.2);
+}
+
+#btns:hover {
+    background-color: black;
+    color: aqua;
+    border: 2px solid aqua;
+    transform: scale(1.2);
+}
+
+.firstSection {
+    display: flex;
+    justify-content: space-around;
+    margin: 90px 0;
+
+}
+
+.firstSection>div {
+    width: 34%;
+}
+
+.leftSection {
+    /* background-color: brown; */
+    font-size: 3rem;
+    /* width: 50%; */
+}
+
+.rightSection {
+    background: url(/static/images/potbg1-removebg.png) no-repeat center center/cover;
+    width: 20px;
+    height: 60vh;
+}
+
+/* .rightSection img{
+    width: 120%;
+    height: 54vh;
+    margin: 17px; 
+} */
+main>hr {
+    border: 0;
+    background-color: rgb(59, 227, 227);
+    height: 1.2px;
+    margin: 50px 40px;
+}
+
+
+.secondSection {
+    height: 80vh;
+    max-width: 90vw;
+    margin: auto;
+}
+
+.secondSection .box {
+    background-color: rgb(20, 20, 20);
+    height: 3vh;
+    width: 101%;
+    border: 2px solid white;
+    border-radius: 23px;
+    margin: 17px 0;
+}
+
+.secondSection .box .box1 {
+    position: relative;
+    background-color: aqua;
+    height: 1.9vh;
+    width: 95%;
+    border: 1px solid white;
+    border-radius: 22px;
+    margin-left: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-right: 2px;
+    /* animation: run 2s ease-in-out infinite; */
+
+
+}
+
+/* @keyframes run
+{ 0%,100%
+    {
+        clip-path: polygon(1% 61%, 11% 65%, 22% 69%, 34% 68%, 43% 64%, 51% 58%, 60% 52%, 68% 47%, 79% 46%, 87% 48%, 100% 54%, 100% 100%,0% 100%);
+    }
+    50%
+    {
+        clip-path: polygon(0% 54%, 10% 49%, 21% 48%, 33% 50%, 41% 56%, 51% 60%, 61% 64%, 70% 66%, 79% 64%, 89% 59%, 100% 54%, 100% 100%,0% 100%);
+    }
+   
+        
+
+    } */
+.secondSection .box3 {
+    position: relative;
+    background-color: aqua;
+    height: 1.9vh;
+    width: 90%;
+    border: 1px solid white;
+    border-radius: 22px;
+    margin-left: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-right: 2px;
+}
+
+.secondSection .box5 {
+    position: relative;
+    background-color: aqua;
+    height: 1.9vh;
+    width: 40%;
+    border: 1px solid white;
+    border-radius: 22px;
+    margin-left: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-right: 2px;
+}
+
+.secondSection .box7 {
+    position: relative;
+    background-color: aqua;
+    height: 1.9vh;
+    width: 90%;
+    border: 1px solid white;
+    border-radius: 22px;
+    margin-left: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-right: 2px;
+}
+
+.secondSection .box9 {
+    position: relative;
+    background-color: aqua;
+    height: 1.9vh;
+    width: 89%;
+    border: 1px solid white;
+    border-radius: 22px;
+    margin-left: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-right: 2px;
+}
+
+
+
+
+.secondSection h1 {
+    color: white;
+    text-shadow: 0px 0px 11px white;
+    font-size: 2rem;
+
+
+}
+
+/* hr{
+    border: 0;
+    background-color: rgb(255, 255, 255);
+    height: 1.2px;
+    margin-left: 5px;
+    margin-right: 1000px;
+    
+    
+    
+
+} */
+
+.secondSection h3 {
+    color: aqua;
+    /* text-shadow: 0px 0px 7px white; */
+    font-size: 1.4rem;
+    margin: 8px;
+
+
+
+}
+
+#thirdSection {
+    padding: 50px 0;
+}
+
+
+#services {
+    padding: 30px 0;
+
+
+}
+
+.sub-title {
+    font-size: 3rem;
+    margin: -25px 23px;
+    text-shadow: 0px 0px 11px white;
+}
+
+
+.services-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 40px;
+    margin-top: 50px;
+
+}
+
+.services-list h2 {
+    color: aqua;
+    font-size: 1.7rem;
+    margin-bottom: 17px;
+
+
+}
+
+.services-list div {
+    background: rgb(25, 25, 46);
+    padding: 40px;
+    margin: 21px;
+    font-size: 0.9rem;
+    font-weight: 300;
+    border-radius: 11px;
+    transition: background 0.5s, transform 0.5s;
+}
+
+
+
+.services-list div:hover {
+    background: rgb(115, 113, 113);
+    transform: translateY(-10px);
+    /* color: black; */
+
+
+
+}
+
+.services-list div a {
+    text-decoration: none;
+    color: aquamarine;
+    font-size: 0.7rem;
+    margin-top: 11px;
+    display: inline-block;
+
+
+}
+
+.services-list div i {
+    font-size: 1.6rem;
+    margin-bottom: 23px;
+
+
+
+}
+
+#thirdSectionPortfolio {
+    padding: 50px 0;
+
+}
+
+.work-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 40px;
+    margin-top: 50px;
+    margin-left: 26px;
+    margin-right: 24px;
+
+}
+
+.work {
+    border-radius: 11px;
+    position: relative;
+    overflow: hidden;
+    /* margin: 0 21px; */
+}
+
+.work img {
+    width: 100%;
+    border-radius: 11px;
+    display: block;
+    transform: transform 0.5s;
+}
+.work img:hover{
+    transform: scale(1.1 );
+}
+.work:hover .layer{
+    height:100% ;
+}
+
+.layer {
+    height:  0;
+    width: 100%;
+    background: linear-gradient(rgb(0, 0, 0, 0.6 ),rgb(5, 104, 216) );
+    border-radius: 10px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 0 40px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.9rem   ;
+    transition: height 0.5s;
+
+}
+.layer h3{
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: aquamarine;
+}
+.layer a{
+    margin-top: 20px;
+    color:aqua ;
+    text-decoration: none;
+    font-size: 1.1rem;
+    line-height:60px ;
+    background: rgb(6, 19, 97);
+    width: 60px;
+    height: 60px;
+    border-radius: 50% ;
+    text-align: center;
+}
+.layer a:hover{
+    /* margin-top: 20px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    line-height:60px ; */
+    background: rgb(0, 0, 0);
+    color:rgb(19, 98, 246) ;
+    /* width: 60px;
+    height: 60px;
+    border-radius: 50% ;
+    text-align: center; */
+}

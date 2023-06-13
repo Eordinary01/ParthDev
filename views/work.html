@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio-ParthDev</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://kit.fontawesome.com/6777739dbf.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="left">Parth's Portfolio</div>
+            <div class="right"></div>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/about">About </a></li>
+                <li><a href="/work">My Work</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="firstSection ">
+            <div class="leftSection">
+                Hi, My name is <span class="blue">Parth</span>
+                <div>and I am a Passionate</div>
+                <span id="element"></span>
+                <div class="buttons"></div>
+                <button id="btns">Download Resume </button>
+                <button id="btn"> Visit Github</button>
+            </div>
+            <div class="rightSection">
+                <!-- <img src="/images/portbg-removebg.png" alt=""></div> -->
+        </section>
+        <hr>
+        <section class="secondSection">
+            <h1>Work Experince</h1>
+            <!-- <hr> -->
+            <h3>HTML</h3>
+
+            <div class="box">
+                <div class="box1"></div>
+            </div>
+            <h3>CSS</h3>
+
+            <div class="box">
+                <div class="box3"></div>
+            </div>
+            <h3>JavaScript</h3>
+            <div class="box">
+                <div class="box5"></div>
+            </div>
+            <h3>NodeJs</h3>
+            <div class="box">
+                <div class="box7"></div>
+            </div>
+            <h3>Hosting</h3>
+
+            <div class="box">
+                <div class="box9"></div>
+            </div>
+        </section>
+        <div id="thirdSection">
+            <div class="container">
+                <h1 class="sub-title">Services</h1>
+                <div class="services-list">
+                    <div>
+                        <i class="fa-sharp fa-solid fa-crop"></i>
+                        <h2>Web App</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque perspiciatis labore odio!
+                            Officiis numquam quisquam eos molestias inventore dolores. Voluptates fuga cum consectetur
+                            ut ea hic, voluptas natus praesentium saepe blanditiis dolorem debitis, aut eveniet?</p>
+                        <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                    <div>
+                        <i class="fa-brands fa-node-js"></i>
+                        <h2>Hosting</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque perspiciatis labore odio!
+                            Officiis numquam quisquam eos molestias inventore dolores. Voluptates fuga cum consectetur
+                            ut ea hic, voluptas natus praesentium saepe blanditiis dolorem debitis, aut eveniet?</p>
+                        <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-code"></i>
+                        <h2>Web Design</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque perspiciatis labore odio!
+                            Officiis numquam quisquam eos molestias inventore dolores. Voluptates fuga cum consectetur
+                            ut ea hic, voluptas natus praesentium saepe blanditiis dolorem debitis, aut eveniet?</p>
+                        <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div id="thirdSectionPortfolio">
+            <div class="container">
+                <h1 class="sub-title">My Work</h1>
+                    <div class="work-list">
+                        <div class="work">
+                            <img src="/static/images/web app13.png" alt="">
+                            <div class="layer">
+                                <h3>Media App</h3>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis vero itaque ratione corrupti mollitia, nulla in tenetur assumenda modi rem?</p>
+                                <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                            </div>
+                        </div>
+                        <div class="work">
+                            <img src="/static/images/web app13.png" alt="">
+                            <div class="layer">
+                                <h3>Media App</h3>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis vero itaque ratione corrupti mollitia, nulla in tenetur assumenda modi rem?</p>
+                                <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                            </div>
+                        </div>
+                        <div class="work">
+                            <img src="/static/images/web app13.png" alt="">
+                            <div class="layer">
+                                <h3>Media App</h3>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis vero itaque ratione corrupti mollitia, nulla in tenetur assumenda modi rem?</p>
+                                <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                            </div>
+                        </div>
+                      
+                    </div>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+        </section>
+    </main>
+
+    <script src="/static/script.js"></script>
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+
+    <!-- Setup and start animation! -->
+
+    <script>
+        var typed = new Typed('#element', {
+            strings: [' Full Stack Web Developer', 'Web Designer', 'Video Editor '],
+            typeSpeed: 70,
+        });
+    </script>
