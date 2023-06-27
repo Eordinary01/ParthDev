@@ -2,7 +2,7 @@ touch.gitignore
 git config --global user.name Parth
 git config --global user.email parth.manocha2901@gmail.com
 git init
-git add
+git add . 
 git commit -m "Initial commit"
 gi$ ssh-keygen -t ed25519 -C "your_email@example.com"
 tail<path to id_rsa.pub> #Add this key to your Github Account

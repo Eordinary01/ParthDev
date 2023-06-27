@@ -34,12 +34,14 @@ app.use(express.urlencoded());
 
 
 
-//  ENDPOINTS
+//  ENDPOINTS 
+
 app.get('/', (req, res) => {
   const params = {}
   res.status(200).render('index.html', params);
 
 });
+/*
 app.get('/home', (req, res) => {
   const params = {}
   res.status(200).render('index.html', params);
@@ -60,6 +62,7 @@ app.get('/contact', (req, res) => {
   res.status(200).render('contact.html', params);
 
 });
+ */
 
 app.post('/contact', (req, res) => {
   var myData = new contact(req.body);

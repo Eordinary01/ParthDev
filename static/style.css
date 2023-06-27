@@ -97,14 +97,14 @@ nav ul li a:hover {
     transform: scale(1.2);
 }
 
-.firstSection {
+#home {
     display: flex;
     justify-content: space-around;
     margin: 90px 0;
 
 }
 
-.firstSection>div {
+#home>div {
     width: 34%;
 }
 
