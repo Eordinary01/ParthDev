@@ -57,12 +57,13 @@ app.get('/work', (req, res) => {
   res.status(200).render('work.html', params);
 
 });
+*/
 app.get('/contact', (req, res) => {
   const params = {}
   res.status(200).render('contact.html', params);
 
 });
- */
+ 
 
 app.post('/contact', (req, res) => {
   var myData = new contact(req.body);

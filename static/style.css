@@ -132,6 +132,28 @@ main>hr {
     margin: 50px 40px;
 }
 
+#about {
+    height: 70vh;
+    max-width: 90vw;
+    /* margin: auto; */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+
+#about h1 {
+    color: white;
+    text-shadow: 0px 0px 11px white;
+    font-size: 3rem;
+
+}
+#about .main-section{
+    margin: 7px 7px;
+    padding: 11px 7px ;
+    font-size: 1.5rem;
+
+ }
 
 #work {
     height: 80vh;
@@ -262,7 +284,7 @@ main>hr {
 
 }
 
-#thirdSection {
+#services {
     padding: 50px 0;
 }
 
@@ -363,17 +385,19 @@ main>hr {
     display: block;
     transform: transform 0.5s;
 }
-.work img:hover{
-    transform: scale(1.1 );
+
+.work img:hover {
+    transform: scale(1.1);
 }
-.work:hover .layer{
-    height:100% ;
+
+.work:hover .layer {
+    height: 100%;
 }
 
 .layer {
-    height:  0;
+    height: 0;
     width: 100%;
-    background: linear-gradient(rgb(0, 0, 0, 0.6 ),rgb(5, 104, 216) );
+    background: linear-gradient(rgb(0, 0, 0, 0.6), rgb(5, 104, 216));
     border-radius: 10px;
     position: absolute;
     left: 0;
@@ -385,35 +409,38 @@ main>hr {
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-size: 0.9rem   ;
+    font-size: 0.9rem;
     transition: height 0.5s;
 
 }
-.layer h3{
+
+.layer h3 {
     font-size: 1.4rem;
     font-weight: 500;
     margin-bottom: 20px;
     color: aquamarine;
 }
-.layer a{
+
+.layer a {
     margin-top: 20px;
-    color:aqua ;
+    color: aqua;
     text-decoration: none;
     font-size: 1.1rem;
-    line-height:60px ;
+    line-height: 60px;
     background: rgb(6, 19, 97);
     width: 60px;
     height: 60px;
-    border-radius: 50% ;
+    border-radius: 50%;
     text-align: center;
 }
-.layer a:hover{
+
+.layer a:hover {
     /* margin-top: 20px;
     text-decoration: none;
     font-size: 1.1rem;
     line-height:60px ; */
     background: rgb(0, 0, 0);
-    color:rgb(19, 98, 246) ;
+    color: rgb(19, 98, 246);
     /* width: 60px;
     height: 60px;
     border-radius: 50% ;
