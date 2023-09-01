@@ -4,9 +4,9 @@
   "description": "This is a Portfolio website ",
   "main": "index.js",
   "scripts": {
-    // "build": "webpack --config webpack.config.js",
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+    
   },
   "author": "Parth M",
   "license": "ISC",
