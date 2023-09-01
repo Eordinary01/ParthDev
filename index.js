@@ -10,7 +10,7 @@ async function main() {
 
   // `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/parth');`    //if your database has auth enabled
 }
-const port = 8000;
+const port = 9000;
 // Define mongoose schema
 const contactSchema = new mongoose.Schema({
   name: String,
