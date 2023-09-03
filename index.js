@@ -22,7 +22,7 @@ const contactSchema = new mongoose.Schema({
 
 });
 
-const contact = mongoose.model('contact', contactSchema);
+const contact = mongoose.model('#contact', contactSchema);
 
 
 
@@ -58,14 +58,14 @@ app.get('/work', (req, res) => {
 
 });
 */
-app.get('/contact', (req, res) => {
-  const params = {}
-  res.status(200).render('contact.html', params);
+// app.get('#Contact', (req, res) => {
+//   const params = {}
+//   res.status(200).render('contact.html', params);
 
-});
+// });
  
 
-app.post('/contact', (req, res) => {
+app.post('#contact', (req, res) => {
   var myData = new contact(req.body);
   myData.save()
     .then(() => {
