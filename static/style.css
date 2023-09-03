@@ -329,7 +329,7 @@ main>hr {
     font-size: 0.9rem;
     font-weight: 300;
     border-radius: 11px;
-    transition: background 0.5s, transform 0.5s;
+    transition: 0.5s, transform 0.5s;
 }
 
 
