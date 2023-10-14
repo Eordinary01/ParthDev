@@ -29,7 +29,8 @@ const contact = mongoose.model('#contact', contactSchema);
 
 
 // EXPRESS  SPECIFIC STUFF
-app.use('/static', express.static('/static')); // for serving static files
+app.use('/static', express.static('static/')); // for serving static files
+// app.use(express.static(__dirname + '/static'));
 app.use(express.urlencoded());
 
 
