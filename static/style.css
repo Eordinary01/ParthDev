@@ -479,6 +479,14 @@ main>hr {
     filter: blur(0); /* Removes blur effect */
     height: 100vh; /* Adjust the height as needed */
 } 
+.formdesign .myInput {
+    width: 50vw;
+    padding: 12px 20px;
+    border: 1px solid blue;
+    margin: 14px;
+    border-radius: 4px;
+    font-size: 15px;
+}
 .myInput{
     display: block;
     justify-content: center;

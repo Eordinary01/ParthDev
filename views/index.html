@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio-ParthDev</title>
-    <link rel="stylesheet" href="/static/style.css" />
+    <link rel="stylesheet" href="../static/style.css" />
     <script
       src="https://kit.fontawesome.com/6777739dbf.js"
       crossorigin="anonymous"
@@ -41,7 +41,7 @@
           <img src="/static/images/potbg1-removebg.png" alt="" />
         </div>
       </section>
-      
+
       <hr />
 
       <section id="about">
@@ -145,53 +145,78 @@
       <section id="contact-me">
         <h1>Contact</h1>
         <div id="contact">
-          <form action="#contact" , method="post" , class="contact-form">
+          <form
+            action="/contact"
+            name="myForm"
+            onsubmit="return validateform()"
+            ,
+            method="post"
+            ,
+            class="contact-form"
+          >
+          <div class="formdesign" id="name">
             <input
               type="text"
+              required
               ,
               class="myInput"
               ,
-              name="name"
+              name="Sname"
               ,
-              placeholder="Enter Your Name "
-            />
+              placeholder="Enter Your Name ">
+              <span class="formerror"> </span>
+            </div> 
+            <div class="formdesign" id="phone">     
             <input
               type="Phone"
+              required
               ,
               class="myInput"
               ,
               name="Phone"
               ,
-              placeholder="Enter Your Phone No"
-            />
+              placeholder="Enter Your Phone No">
+
+            <span class="formerror"> </span>
+            </div>
+
+            <div class="formdesign" id="email">
             <input
               type="Email"
+              required
               ,
               class="myInput"
               ,
               name="Email"
               ,
-              placeholder="Enter Your Email"
-            />
+              placeholder="Enter Your Email">
+              <span class="formerror"> </span>
+              </div>
+              <div class="formdesign" id="location">
             <input
               type="Location"
+              required
               ,
               class="myInput"
               ,
               name="Location"
               ,
-              placeholder="Enter Your City Name"
-            />
+              placeholder="Enter Your City Name">
+              <span class="formerror"> </span>
+            </div>
+            <div class="formdesign" id="query">
             <input
               type="Contact"
+              required
               ,
               class="myInput"
               ,
               name="Contact"
               ,
-              placeholder="Enter any Query/ Work realted stuff"
-            />
-            <button class="btn">Submit</button>
+              placeholder="Enter any Query/ Work realted stuff">
+              <span class="formerror"> </span>
+              </div>
+            <input class="btn" type="submit" value="Submit">
           </form>
         </div>
       </section>
