@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 main().catch(err => console.log(err));
 
 async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/parth');
+  await mongoose.connect('mongodb+srv://parthmanocha2901:e8F7KHhhS5R8M2iE@cluster0.ecvzxuo.mongodb.net/parth');
 
   // `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/parth');`    //if your database has auth enabled
 }
