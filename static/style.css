@@ -126,11 +126,11 @@ nav ul li a:hover {
     height: 60vh;
 }
 
-/* .rightSection img{
-    width: 120%;
+.rightSection img{
+    width: 100%;
     height: 54vh;
     margin: 17px; 
-} */
+}
 main>hr {
     border: 0;
     background-color: rgb(59, 227, 227);
