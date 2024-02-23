@@ -29,19 +29,18 @@ const contact = mongoose.model('#contact', contactSchema);
 
 
 // EXPRESS  SPECIFIC STUFF
-app.use('/static', express.static('static/')); // for serving static files
-// app.use(express.static(__dirname + '/static'));
-app.use(express.urlencoded());
+// app.use('/static', express.static('static')); // for serving static files
+app.use(express.static(path.join(__dirname , 'static')));
+app.use(express.urlencoded({extended:true}));
 
 
 
 //  ENDPOINTS 
 
 app.get('/', (req, res) => {
-  const params = {}
-  res.status(200).render('index.html', params);
-
+  res.sendFile(path.join(__dirname, 'static', 'index.html'));
 });
+
 /*
 app.get('/home', (req, res) => {
   const params = {}
@@ -85,7 +84,7 @@ app.post('/contact', (req, res) => {
 app.engine('html', require('ejs').renderFile);
 
 
-app.set('src/views', path.join(__dirname, 'views')); // set the views directory
+// app.set('views', path.join(__dirname, 'src/views')); // set the views directory
 
 
 
