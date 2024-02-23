@@ -85,7 +85,7 @@ app.post('/contact', (req, res) => {
 app.engine('html', require('ejs').renderFile);
 
 
-app.set('views', path.join(__dirname, 'views')); // set the views directory
+app.set('src/views', path.join(__dirname, 'views')); // set the views directory
 
 
 
