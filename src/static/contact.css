@@ -3,6 +3,18 @@
     padding: 0;
     box-sizing: border-box;
 }
+nav{
+    /* background-color: black; */
+    display: flex;
+    flex-direction: column;
+    height: 20vh;
+}
+nav ul li{
+    font-size: 1.5rem;
+}
+.Left{
+    font-size: 2rem;
+}
 #contact{
     display: flex;
     flex-direction: column;
@@ -20,6 +32,7 @@
     background-position: center center;
     filter: blur(0); /* Removes blur effect */
     height: 100vh; /* Adjust the height as needed */
+    /* background-color: rgb(172, 172, 172); */
 } 
 .myInput{
     display: block;
