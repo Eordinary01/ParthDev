@@ -6,14 +6,57 @@
 nav{
     /* background-color: black; */
     display: flex;
-    flex-direction: column;
-    height: 20vh;
+    /* flex-direction: column; */
+    /* height: 17vh; */
+    /* width: 100%; */
+}
+nav li {
+    display: none;
+}
+nav i{
+    display: block;
 }
 nav ul li{
     font-size: 1.5rem;
 }
+#btn,
+#btns{
+    font-size: 1rem;
+}
 .Left{
     font-size: 2rem;
+}
+#home{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* width: 80vh; */
+   
+}
+.leftSection{
+    font-size:1.9rem;
+    width: 100%;
+    
+
+}
+.rightSection{
+    width: 25px;
+    height: 45vh;
+}
+.rightSection img{
+    height: 30vh;
+}
+#about{
+    height: 35vh;
+}
+#work{
+    height: 69vh;
+}
+.services-list div{
+    height: 35vh;
+    font-size: 0.5rem;
+    
 }
 #contact{
     display: flex;
