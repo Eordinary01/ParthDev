@@ -22,6 +22,7 @@ nav ul li{
 #btn,
 #btns{
     font-size: 1rem;
+    margin: 0.6rem;
 }
 .Left{
     font-size: 2rem;
@@ -51,6 +52,7 @@ nav ul li{
     height: 35vh;
 }
 #work{
+    padding-top: 3.5rem;
     height: 69vh;
 }
 .services-list div{
