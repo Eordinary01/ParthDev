@@ -50,6 +50,10 @@ nav ul li{
 }
 #about{
     height: 35vh;
+    
+}
+#about .main-section{
+    font-size: 1.1rem ;
 }
 #work{
     margin-top: 7.5rem;
