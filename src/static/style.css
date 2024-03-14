@@ -262,6 +262,18 @@ main>hr {
     margin-bottom: 2px;
     margin-right: 2px;
 }
+#work .box10 {
+    position: relative;
+    background-color: aqua;
+    height: 1.9vh;
+    width: 79%;
+    border: 1px solid white;
+    border-radius: 22px;
+    margin-left: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-right: 2px;
+}
 
 
 
