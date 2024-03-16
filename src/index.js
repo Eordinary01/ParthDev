@@ -1,3 +1,8 @@
+require("dotenv").config();
+console.log(process.env.DB_CONNECTION_STRING);
+console.log(process.env.PORT);
+
+
 const express = require("express");
 const path = require("path");
 const app = express();
@@ -6,11 +11,20 @@ const mongoose = require('mongoose');
 main().catch(err => console.log(err));
 
 async function main() {
-  await mongoose.connect('mongodb+srv://parthmanocha2901:e8F7KHhhS5R8M2iE@cluster0.ecvzxuo.mongodb.net/parth');
-
-  // `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/parth');`    //if your database has auth enabled
+  try {
+    await mongoose.connect(process.env.DB_CONNECTION_STRING, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    });
+    console.log("Connected to MongoDB");
+  } catch (err) {
+    console.error("Error connecting to MongoDB:", err);
+  }
 }
-const port = 8200;
+
+
+
+const port = process.env.PORT || 8200;
 // Define mongoose schema
 const contactSchema = new mongoose.Schema({
   name: String,
