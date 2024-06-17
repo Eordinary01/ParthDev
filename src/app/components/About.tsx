@@ -43,7 +43,7 @@ const About = () => {
           </div>
         )}
         <p className="text-2xl text-white text-center">
-          My name is Parth Manocha and I am from Jaipur. As a child, I've always had an interest in tech stuff and the IT industry. Since then, I started thinking about how things work here and finally decided to start programming and have a look around this world...
+          My name is Parth Manocha and I am from Jaipur. As a child, I&apos;ve always had an interest in tech stuff and the IT industry. Since then, I started thinking about how things work here and finally decided to start programming and have a look around this world...
         </p>
       </div>
       <div className="flex justify-center mb-8 relative">
