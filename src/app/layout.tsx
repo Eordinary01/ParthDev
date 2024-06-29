@@ -24,7 +24,7 @@ export default function RootLayout({
           <Navbar />
           
           <main className="flex-grow container mx-auto p-4">{children}</main>
-          <footer className="bg-blue-400 text-black p-4 text-center">
+          <footer className="bg-blue-400 text-white p-4 text-center">
             © 2024 My Portfolio
           </footer>
         </div>
