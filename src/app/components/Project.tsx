@@ -41,6 +41,12 @@ const Project = () => {
       link: "https://shopping-app-low0.onrender.com/",
       color: "#A55EEA",
     },
+    {
+      title: "Advance Assignment Application",
+      description: " Introducing the Ultimate Assignment Management Solution!🎓",
+      link: "https://viewassignmentfrontend.vercel.app/",
+      color: "#A55EEA",
+    },
   ];
 
   const [hoveredIndex, setHoveredIndex] = useState(null);
