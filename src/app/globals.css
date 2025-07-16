@@ -13,16 +13,6 @@
 body {
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
-  cursor: none; /* Hide default cursor */
-}
-
-/* Custom cursor styles */
-.cursor-pointer {
-  cursor: none !important;
-}
-
-button, a, input, textarea {
-  cursor: none !important;
 }
 
 .perspective-1000 {
