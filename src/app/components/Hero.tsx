@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import Link from "next/link";
 import Typed from "typed.js";
 
 const Hero = () => {
@@ -132,10 +131,7 @@ const Hero = () => {
               whileTap={{ scale: 0.95 }}
               className="group relative px-8 py-4 bg-aqua-500 text-white rounded-full font-semibold text-lg overflow-hidden hover-lift pulse-glow"
             >
-              <Link href="https://github.com/Eordinary01" target="_blank" rel="noopener noreferrer"  >
               <span className="relative z-10">View My Work</span>
-                
-              </Link>
               <div className="absolute inset-0 bg-gradient-to-r from-aqua-600 to-aqua-400 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
             </motion.button>
 

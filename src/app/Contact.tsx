@@ -1,6 +1,6 @@
 "use client";
 
-import { useState,useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
 export default function Contact() {
@@ -12,7 +12,6 @@ export default function Contact() {
   const [successMessage, setSuccessMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [focusedField, setFocusedField] = useState<string | null>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, amount: 0.3 });
@@ -80,46 +79,8 @@ export default function Contact() {
     }
   ];
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
-
   return (
     <section id="contact" className="min-h-screen bg-gray-900 relative overflow-hidden">
-      {/* Custom cursor for this section */}
-      <div className="fixed inset-0 pointer-events-none z-50">
-        <motion.div
-          className="absolute w-8 h-8 bg-green-500 rounded-full opacity-80 shadow-lg"
-          animate={{
-            x: mousePosition.x - 16,
-            y: mousePosition.y - 16,
-          }}
-          transition={{ type: "spring", stiffness: 800, damping: 35 }}
-        />
-        
-        <motion.div
-          className="absolute w-12 h-12 border-2 border-green-400 rounded-full opacity-60"
-          animate={{
-            x: mousePosition.x - 24,
-            y: mousePosition.y - 24,
-          }}
-          transition={{ type: "spring", stiffness: 400, damping: 25 }}
-        />
-        
-        <motion.div
-          className="absolute w-16 h-16 bg-green-500 rounded-full opacity-20 blur-md"
-          animate={{
-            x: mousePosition.x - 32,
-            y: mousePosition.y - 32,
-          }}
-          transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        />
-      </div>
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-64 h-64 bg-aqua-500 opacity-5 morphing-shape float" />

@@ -1,25 +1,33 @@
 "use client";
-import React, { useState,useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { Link as ScrollLink } from 'react-scroll';
 
 const Project = () => {
   const projects = [
     {
-      title: "Full Stack Vehicel Rental System",
-      description: "A Platofrm to rent vehicles",
+      title: "Vehicel Rental System",
+      description: "A comprehensive vehicle rental management system",
       link: "https://vehicle-rental-frontend-1hw5.vercel.app/",
-      color: "#FF6F61",
-      tech: ["NextJs", "Node.js", "MongoDB"],
-      category: "Vehicle Rental"
+      color: "#FF6B6B",
+      tech: ["NextJS", "Node.js", "MongoDB"],
+      category: "Full Stack"
     },
     {
-      title: "AttendEase",
-      description: "Attendance tracker and management application",
-      link: "https://attend-ease-f.vercel.app/",
+      title: "Colloborative Coding Platform",
+      description: "A platform for real-time collaborative coding",
+      link: "",
       color: "#4ECDC4",
-      tech: ["Next.js", "TypeScript", "Tailwind"],
-      category: "Web App"
+      tech: ["NextJs", "Node.js", "MongoDB"],
+      category: "Full Stack"
+    },
+    {
+      title: "Assignment Manager",
+      description: "Ultimate Assignment Management Solution",
+      link: "https://viewassignmentfrontend.vercel.app/",
+      color: "#FF9FF3",
+      tech: ["React", "Node.js", "MongoDB"],
+      category: "Education"
     },
     {
       title: "BMS",
@@ -29,7 +37,14 @@ const Project = () => {
       tech: ["React", "Node.js", "MongoDB"],
       category: "Full Stack"
     },
-    
+    {
+      title: "AttendEase",
+      description: "Attendance tracker and management application",
+      link: "https://attend-ease-f.vercel.app/",
+      color: "#4ECDC4",
+      tech: ["Next.js", "TypeScript", "Tailwind"],
+      category: "Web App"
+    },
     {
       title: "Expense Tracker",
       description: "Personal finance management tool",
@@ -62,21 +77,12 @@ const Project = () => {
       tech: ["MERN", "Stripe", "Redux"],
       category: "E-commerce"
     },
-    {
-      title: "Assignment Manager",
-      description: "Ultimate Assignment Management Solution",
-      link: "https://viewassignmentfrontend.vercel.app/",
-      color: "#FF9FF3",
-      tech: ["React", "Node.js", "MongoDB"],
-      category: "Education"
-    },
-    
+   
   ];
 
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
   const [filter, setFilter] = useState("All");
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, amount: 0.2 });
   const { scrollYProgress } = useScroll({
@@ -89,15 +95,6 @@ const Project = () => {
   const categories = ["All", ...Array.from(new Set(projects.map(p => p.category)))];
   const filteredProjects = filter === "All" ? projects : projects.filter(p => p.category === filter);
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
-
   const handleCardClick = (link: string, index: number) => {
     setSelectedProject(index);
     setTimeout(() => {
@@ -108,35 +105,6 @@ const Project = () => {
 
   return (
     <section id="projects" className="py-20 bg-gray-900 relative overflow-hidden">
-      {/* Custom cursor for this section */}
-      <div className="fixed inset-0 pointer-events-none z-50">
-        <motion.div
-          className="absolute w-8 h-8 bg-green-500 rounded-full opacity-80 shadow-lg"
-          animate={{
-            x: mousePosition.x - 16,
-            y: mousePosition.y - 16,
-          }}
-          transition={{ type: "spring", stiffness: 800, damping: 35 }}
-        />
-        
-        <motion.div
-          className="absolute w-12 h-12 border-2 border-green-400 rounded-full opacity-60"
-          animate={{
-            x: mousePosition.x - 24,
-            y: mousePosition.y - 24,
-          }}
-          transition={{ type: "spring", stiffness: 400, damping: 25 }}
-        />
-        
-        <motion.div
-          className="absolute w-16 h-16 bg-green-500 rounded-full opacity-20 blur-md"
-          animate={{
-            x: mousePosition.x - 32,
-            y: mousePosition.y - 32,
-          }}
-          transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        />
-      </div>
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
