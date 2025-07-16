@@ -100,7 +100,7 @@ export default function Contact() {
           className="text-center mb-16"
         >
           <h1 className="text-6xl md:text-7xl font-black mb-8 gradient-text">
-            Let's Connect
+            Let&apos;ss Connect
           </h1>
           <motion.div
             initial={{ width: 0 }}
@@ -109,8 +109,8 @@ export default function Contact() {
             className="h-1 bg-gradient-to-r from-aqua-500 to-aqua-300 mx-auto mb-8"
           />
           <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            Have a project in mind? Let's discuss how we can bring your ideas to life. 
-            I'm always excited to collaborate on innovative solutions.
+            Have a project in mind? Let&apos;ss discuss how we can bring your ideas to life. 
+            I&apos;sm always excited to collaborate on innovative solutions.
           </p>
         </motion.div>
 

@@ -79,7 +79,7 @@ const Hero = () => {
                 animate={{ opacity: 1, rotateX: 0 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
               >
-                Hi, I'm
+                Hi, I&apos;sm
               </motion.span>
               <br />
               <motion.span

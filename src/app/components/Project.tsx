@@ -279,7 +279,7 @@ const Project = () => {
           <div className="glass-dark rounded-3xl p-12 max-w-4xl mx-auto">
             <h3 className="text-4xl font-bold mb-6 gradient-text">Ready to Collaborate?</h3>
             <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-              Let's turn your next big idea into reality! I'm always excited to work on innovative projects 
+              Let&apos;ss turn your next big idea into reality! I&apos;sm always excited to work on innovative projects 
               and bring creative solutions to life.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

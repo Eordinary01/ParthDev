@@ -93,7 +93,7 @@ const About = () => {
             className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
           >
             My name is <span className="text-aqua-400 font-semibold">Parth Manocha</span> and I am from Jaipur. 
-            As a child, I've always had an interest in tech stuff and the IT industry. 
+            As a child, I&apos;sve always had an interest in tech stuff and the IT industry. 
             Since then, I started thinking about how things work here and finally 
             decided to start programming and have a look around this world...
           </motion.p>
