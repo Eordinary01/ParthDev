@@ -70,14 +70,37 @@
         </div>
   
         {/* Mouse follower */}
-        <motion.div
-          className="fixed w-6 h-6 bg-aqua-500 rounded-full pointer-events-none z-50 mix-blend-difference"
-          animate={{
-            x: mousePosition.x - 12,
-            y: mousePosition.y - 12,
-          }}
-          transition={{ type: "spring", stiffness: 500, damping: 28 }}
-        />
+        <div className="fixed inset-0 pointer-events-none z-50">
+          {/* Main cursor circle */}
+          <motion.div
+            className="absolute w-8 h-8 bg-green-500 rounded-full opacity-80 shadow-lg"
+            animate={{
+              x: mousePosition.x - 16,
+              y: mousePosition.y - 16,
+            }}
+            transition={{ type: "spring", stiffness: 800, damping: 35 }}
+          />
+          
+          {/* Outer ring */}
+          <motion.div
+            className="absolute w-12 h-12 border-2 border-green-400 rounded-full opacity-60"
+            animate={{
+              x: mousePosition.x - 24,
+              y: mousePosition.y - 24,
+            }}
+            transition={{ type: "spring", stiffness: 400, damping: 25 }}
+          />
+          
+          {/* Glow effect */}
+          <motion.div
+            className="absolute w-16 h-16 bg-green-500 rounded-full opacity-20 blur-md"
+            animate={{
+              x: mousePosition.x - 32,
+              y: mousePosition.y - 32,
+            }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          />
+        </div>
   
         <motion.div
           style={{ y, opacity }}

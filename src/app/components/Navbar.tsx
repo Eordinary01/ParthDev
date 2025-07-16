@@ -61,7 +61,7 @@ const Navbar = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <ScrollLink to="home" smooth={true} duration={500} className="cursor-pointer">
+            <ScrollLink to="home" smooth={true} duration={300} className="cursor-pointer">
               <motion.div className="flex items-center">
                 {["P", "O", "R", "T", "F", "O", "L", "I", "O"].map((letter, index) => (
                   <motion.span
@@ -128,7 +128,7 @@ const Navbar = () => {
                 key={item.id}
                 to={item.id}
                 smooth={true}
-                duration={500}
+                duration={300}
                 className="relative cursor-pointer group"
               >
                 <motion.div
@@ -198,7 +198,7 @@ const Navbar = () => {
                     key={item.id}
                     to={item.id}
                     smooth={true}
-                    duration={500}
+                    duration={300}
                     className="block cursor-pointer"
                     onClick={() => setIsMenuOpen(false)}
                   >
