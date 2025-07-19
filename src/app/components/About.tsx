@@ -197,7 +197,9 @@ const About = () => {
               {currentSkills.map((skill, index) => (
                 <motion.div
                   key={skill.name}
-                  ref={el => el && (skillsRef.current[index] = el)}
+                  ref={el => {
+                    if (el) skillsRef.current[index] = el;
+                  }}
                   initial={{ opacity: 0, y: 30 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: 1 + index * 0.1 }}

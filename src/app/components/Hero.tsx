@@ -103,7 +103,9 @@ const Hero = () => {
     return Array.from({ length: 80 }, (_, i) => (
       <div
         key={i}
-        ref={el => el && (particlesRef.current[i] = el)}
+        ref={el => {
+          if (el) particlesRef.current[i] = el;
+        }}
         className="particle absolute pointer-events-none"
         style={{
           left: `${Math.random() * 100}%`,
