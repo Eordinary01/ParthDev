@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
-import SpaceBackground from "./components/SpaceBackground";
+import ThreeBackground from "./components/ThreeBackground";
+import SmoothScroll from "./components/SmoothScroll";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,7 +28,8 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} bg-black text-white antialiased`}>
         <div className="min-h-screen relative">
-          <SpaceBackground />
+          <ThreeBackground />
+          <SmoothScroll />
           <Navbar />
           {children}
           
