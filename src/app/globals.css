@@ -14,6 +14,7 @@ body {
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
   background: #0a0a0a;
+  scroll-behavior: auto; /* Let Lenis handle smooth scrolling */
 }
 
 .perspective-1000 {
@@ -26,8 +27,9 @@ body {
 
 /* Enhanced Glassmorphism effect */
 .glass {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(30px);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 
     0 8px 32px rgba(0, 0, 0, 0.4),
@@ -35,8 +37,9 @@ body {
 }
 
 .glass-dark {
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(30px);
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
   border: 1px solid rgba(79, 209, 197, 0.3);
   box-shadow: 
     0 8px 32px rgba(79, 209, 197, 0.15),
@@ -567,10 +570,36 @@ a:focus {
     color 0.4s ease, 
     background-color 0.4s ease, 
     border-color 0.4s ease, 
-    transform 0.4s ease, 
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
     box-shadow 0.4s ease, 
     opacity 0.4s ease,
     filter 0.4s ease;
+}
+
+/* Smooth scroll override */
+html {
+  scroll-behavior: auto !important;
+}
+
+/* Lenis smooth scroll styles */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
 /* Matrix rain effect */

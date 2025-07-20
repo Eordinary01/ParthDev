@@ -171,7 +171,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="h-screen relative overflow-hidden flex items-center justify-center">
+    <section id="home" className="min-h-screen h-screen relative overflow-hidden flex items-center justify-center">
       {/* Enhanced background with gradients */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800">
         <div className="absolute inset-0 bg-gradient-to-t from-transparent via-aqua-500/5 to-purple-500/5" />
@@ -212,7 +212,7 @@ const Hero = () => {
         <motion.div
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
+          transition={{ duration: 1.2, delay: 0.5, type: "spring", stiffness: 100 }}
           className="mb-12"
         >
           <h1 ref={titleRef} className="text-7xl md:text-9xl lg:text-[12rem] font-black leading-none">
@@ -242,7 +242,7 @@ const Hero = () => {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.8 }}
+          transition={{ duration: 1.2, delay: 1.8, type: "spring", stiffness: 80 }}
           className="mb-16"
         >
           <div className="glass-dark rounded-3xl p-8 inline-block holographic backdrop-blur-xl">
@@ -257,7 +257,7 @@ const Hero = () => {
         <motion.p
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 2.2 }}
+          transition={{ duration: 1.2, delay: 2.2, type: "spring", stiffness: 60 }}
           className="text-xl md:text-2xl lg:text-3xl text-gray-200 mb-16 leading-relaxed max-w-4xl mx-auto font-light"
         >
           Crafting exceptional digital experiences through innovative web technologies, 
@@ -268,7 +268,7 @@ const Hero = () => {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 2.6 }}
+          transition={{ duration: 1.2, delay: 2.6, type: "spring", stiffness: 50 }}
           className="flex flex-col sm:flex-row gap-8 justify-center items-center mb-20"
         >
           <motion.button
