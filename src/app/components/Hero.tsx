@@ -78,7 +78,7 @@ const Hero = () => {
             className="mb-24 lg:mb-32"
           >
             <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-10xl font-black leading-[1.05] text-white max-w-5xl lg:max-w-6xl">
-              Hi, I'm <br className="hidden sm:block" />
+              Hi, I&apos;m <br className="hidden sm:block" />
               <span className="text-cyan-400">Parth</span> Manocha
             </h1>
           </motion.div>
