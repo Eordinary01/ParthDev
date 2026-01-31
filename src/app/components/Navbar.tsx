@@ -7,6 +7,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen((prevState) => !prevState);
@@ -22,6 +23,7 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
+      setIsScrolled(scrollPosition > 50);
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
       const progress = scrollPosition / (documentHeight - windowHeight);
@@ -53,7 +55,9 @@ const Navbar = () => {
         style={{ scaleX: scrollProgress }}
       />
 
-      <header className="fixed w-full glass-dark text-white p-4 shadow-2xl z-50 border-b border-white border-opacity-10">
+      <header className={`fixed w-full text-white p-4 shadow-2xl z-50 border-b border-white border-opacity-10 transition-all duration-500 ${
+        isScrolled ? 'glass-dark backdrop-blur-xl' : 'bg-transparent'
+      }`}>
         <nav className="container mx-auto flex justify-between items-center">
           {/* Logo */}
           <motion.div 
