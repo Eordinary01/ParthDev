@@ -104,7 +104,7 @@ const Project = () => {
   };
 
   return (
-    <section id="projects" className="py-20 bg-gray-900 relative overflow-hidden">
+    <section id="projects" className="py-20 bg-inherit relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div

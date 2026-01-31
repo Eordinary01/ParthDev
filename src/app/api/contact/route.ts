@@ -18,8 +18,6 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET(req: NextRequest) {
-  // Add your GET logic here if needed
+
   return NextResponse.json({ message: 'GET method not allowed' }, { status: 405 });
 }
-
-// Add handlers for other HTTP methods (PUT, DELETE, etc.) if needed

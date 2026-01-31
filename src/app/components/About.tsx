@@ -41,7 +41,7 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="min-h-screen relative overflow-hidden bg-gray-900">
+    <section id="about" className="min-h-screen my-auto relative overflow-hidden bg-transparent">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div

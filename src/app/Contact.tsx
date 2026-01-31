@@ -80,7 +80,7 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="min-h-screen bg-gray-900 relative overflow-hidden">
+    <section id="contact" className="min-h-screen bg-inherit relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-64 h-64 bg-aqua-500 opacity-5 morphing-shape float" />
