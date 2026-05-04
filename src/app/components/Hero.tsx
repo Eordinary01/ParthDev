@@ -65,7 +65,7 @@ const Hero = () => {
             transition={{ duration: 1, delay: 0.3 }}
             className="mb-16 lg:mb-24"
           >
-            <span className="text-xs sm:text-sm font-light text-cyan-400/40 tracking-[0.15em] uppercase">
+            <span className="text-xs sm:text-sm font-light text-gray-500 tracking-[0.15em] uppercase">
               Welcome to my portfolio
             </span>
           </motion.div>
