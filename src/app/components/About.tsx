@@ -1,8 +1,10 @@
 "use client";
 import React, { useState, useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { useTheme } from "../context/ThemeContext";
 
 const About = () => {
+  const { isDarkMode } = useTheme();
   const [showFrontend, setShowFrontend] = useState(true);
   const [hoveredSkill, setHoveredSkill] = useState<number | null>(null);
   const containerRef = useRef(null);
@@ -42,15 +44,13 @@ const About = () => {
 
   return (
     <section id="about" className="min-h-screen my-auto relative overflow-hidden bg-transparent">
-      {/* Animated background elements */}
+      {/* Animated background elements - Theme aware */}
       <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          style={{ y }}
-          className="absolute top-20 left-10 w-64 h-64 bg-aqua-500 opacity-5 morphing-shape"
-        />
+       
         <motion.div
           style={{ y: useTransform(scrollYProgress, [0, 1], [-50, 50]) }}
-          className="absolute bottom-20 right-10 w-48 h-48 bg-aqua-400 opacity-8 rounded-full"
+          className="absolute bottom-20 right-10 w-48 h-48 rounded-full"
+          
         />
       </div>
 
@@ -73,7 +73,8 @@ const About = () => {
           >
             <span className="gradient-text">About Me</span>
             <motion.div
-              className="absolute -inset-4 bg-aqua-500 opacity-20 rounded-2xl -z-10"
+              className="absolute -inset-4 rounded-2xl -z-10"
+              style={{ backgroundColor: 'var(--accent)', opacity: 0.2 }}
               whileHover={{ scale: 1.1, opacity: 0.3 }}
               transition={{ duration: 0.3 }}
             />
@@ -83,17 +84,18 @@ const About = () => {
             initial={{ width: 0 }}
             animate={isInView ? { width: "100px" } : {}}
             transition={{ duration: 1, delay: 0.5 }}
-            className="h-1 bg-gradient-to-r from-aqua-500 to-aqua-300 mx-auto mb-8"
+            className="h-1 bg-gradient-to-r from-cyan-500 to-cyan-300 mx-auto mb-8"
           />
 
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
+            className="text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed"
+            style={{ color: 'var(--text-secondary)' }}
           >
-            My name is <span className="text-aqua-400 font-semibold">Parth Manocha</span> and I am from Jaipur. 
-            As a child, I&apos;sve always had an interest in tech stuff and the IT industry. 
+            My name is <span className="gradient-text font-semibold">Parth Manocha</span> and I am from Jaipur. 
+            As a child, I&apos;ve always had an interest in tech stuff and the IT industry. 
             Since then, I started thinking about how things work here and finally 
             decided to start programming and have a look around this world...
           </motion.p>
@@ -107,14 +109,21 @@ const About = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="glass-dark rounded-3xl p-8 md:p-12 relative overflow-hidden"
           >
-            {/* Background decoration */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-aqua-500 opacity-10 rounded-full transform translate-x-16 -translate-y-16" />
-            <div className="absolute bottom-0 left-0 w-24 h-24 bg-aqua-400 opacity-10 rounded-full transform -translate-x-12 translate-y-12" />
+            {/* Background decoration - Theme aware */}
+            <div 
+              className="absolute top-0 right-0 w-32 h-32 rounded-full transform translate-x-16 -translate-y-16"
+              style={{ backgroundColor: 'var(--accent)', opacity: 0.1 }}
+            />
+            <div 
+              className="absolute bottom-0 left-0 w-24 h-24 rounded-full transform -translate-x-12 translate-y-12"
+              style={{ backgroundColor: 'var(--accent)', opacity: 0.08 }}
+            />
 
             {/* Skills Header */}
             <div className="flex flex-col md:flex-row justify-between items-center mb-12">
               <motion.h3
-                className="text-4xl md:text-5xl font-bold text-white mb-4 md:mb-0"
+                className="text-4xl md:text-5xl font-bold mb-4 md:mb-0"
+                style={{ color: 'var(--text-primary)' }}
                 initial={{ opacity: 0, x: -50 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.8 }}
@@ -126,7 +135,8 @@ const About = () => {
                 onClick={handleFlip}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative px-6 py-3 bg-aqua-500 text-white rounded-full font-semibold overflow-hidden"
+                className="group relative px-6 py-3 text-white rounded-full font-semibold overflow-hidden"
+                style={{ backgroundColor: 'var(--accent)' }}
                 initial={{ opacity: 0, x: 50 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.8 }}
@@ -141,7 +151,10 @@ const About = () => {
                     ↻
                   </motion.span>
                 </span>
-                <div className="absolute inset-0 bg-aqua-600 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
+                <div 
+                  className="absolute inset-0 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"
+                  style={{ backgroundColor: 'var(--accent-light)', opacity: 0.8 }}
+                />
               </motion.button>
             </div>
 
@@ -167,16 +180,25 @@ const About = () => {
                     {/* Skill icon and name */}
                     <div className="flex items-center mb-4">
                       <span className="text-3xl mr-3">{skill.icon}</span>
-                      <h4 className="text-xl font-semibold text-white group-hover:text-aqua-400 transition-colors">
+                      <h4 
+                        className="text-xl font-semibold transition-colors group-hover:gradient-text"
+                        style={{ color: 'var(--text-primary)' }}
+                      >
                         {skill.name}
                       </h4>
                     </div>
 
                     {/* Progress bar */}
                     <div className="relative">
-                      <div className="w-full bg-gray-700 rounded-full h-3 mb-2">
+                      <div 
+                        className="w-full rounded-full h-3 mb-2"
+                        style={{ backgroundColor: isDarkMode ? '#374151' : '#e5e7eb' }}
+                      >
                         <motion.div
-                          className="bg-gradient-to-r from-aqua-500 to-aqua-300 h-3 rounded-full relative overflow-hidden"
+                          className="h-3 rounded-full relative overflow-hidden"
+                          style={{ 
+                            background: `linear-gradient(90deg, var(--accent), var(--accent-light))`
+                          }}
                           initial={{ width: 0 }}
                           animate={isInView ? { width: `${skill.level}%` } : {}}
                           transition={{ duration: 1.5, delay: 1.2 + index * 0.1 }}
@@ -185,7 +207,8 @@ const About = () => {
                         </motion.div>
                       </div>
                       <motion.span
-                        className="text-aqua-400 font-semibold text-sm"
+                        className="text-sm font-semibold"
+                        style={{ color: 'var(--accent)' }}
                         initial={{ opacity: 0 }}
                         animate={isInView ? { opacity: 1 } : {}}
                         transition={{ delay: 1.5 + index * 0.1 }}
@@ -196,7 +219,8 @@ const About = () => {
 
                     {/* Hover effect */}
                     <motion.div
-                      className="absolute inset-0 bg-aqua-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-2xl"
+                      className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-2xl"
+                      style={{ backgroundColor: 'var(--accent)' }}
                       animate={hoveredSkill === index ? { scale: [1, 1.05, 1] } : {}}
                       transition={{ duration: 0.3 }}
                     />
@@ -212,7 +236,10 @@ const About = () => {
               transition={{ duration: 0.8, delay: 1.5 }}
               className="mt-12 text-center"
             >
-              <p className="text-gray-400 text-lg mb-6">
+              <p 
+                className="text-lg mb-6"
+                style={{ color: 'var(--text-secondary)' }}
+              >
                 Constantly learning and evolving with the latest technologies
               </p>
               <div className="flex justify-center space-x-4">

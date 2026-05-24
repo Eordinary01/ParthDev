@@ -2,8 +2,11 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import Typed from "typed.js";
+import { useTheme } from "../context/ThemeContext";
 
 const Hero = () => {
+  const { isDarkMode } = useTheme();
+
   useEffect(() => {
     const typed = new Typed("#typed-text", {
       strings: [
@@ -23,6 +26,28 @@ const Hero = () => {
 
     return () => typed.destroy();
   }, []);
+
+  // Function to handle resume download
+  const handleDownloadResume = () => {
+    const resumeUrl = "/Parth Resume.pdf";
+    const link = document.createElement("a");
+    link.href = resumeUrl;
+    link.download = "Parth_Manocha_Resume.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  // Function to handle View My Work
+  const handleViewWork = () => {
+    const projectsSection = document.getElementById("projects");
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  // GitHub profile URL
+  const githubUrl = "https://github.com/Eordinary01";
 
   return (
     <section id="home" className="relative w-full bg-transparent overflow-hidden">
@@ -49,9 +74,8 @@ const Hero = () => {
       {/* Barely visible grid */}
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,.005)_1px,transparent_1px),linear-gradient(rgba(255,255,255,.005)_1px,transparent_1px)] bg-[size:150px_150px] pointer-events-none" />
 
-      {/* MAIN CONTENT - TAKES FULL VIEWPORT HEIGHT + MORE */}
+      {/* MAIN CONTENT */}
       <div className="relative z-10 w-full min-h-screen flex flex-col justify-between py-20 lg:py-32">
-        {/* TOP SECTION - Welcome & Heading */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -65,63 +89,77 @@ const Hero = () => {
             transition={{ duration: 1, delay: 0.3 }}
             className="mb-16 lg:mb-24"
           >
-            <span className="text-xs sm:text-sm font-light text-gray-500 tracking-[0.15em] uppercase">
+            <span 
+              className="text-xs sm:text-sm font-light tracking-[0.15em] uppercase"
+              style={{ color: 'var(--text-secondary)' }}
+            >
               Welcome to my portfolio
             </span>
           </motion.div>
 
-          {/* MASSIVE HEADING - CLEAN WHITE NO GRADIENT */}
+          {/* MASSIVE HEADING */}
           <motion.div
             initial={{ opacity: 0, y: 80 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.4 }}
             className="mb-24 lg:mb-32"
           >
-            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-10xl font-black leading-[1.05] text-white max-w-5xl lg:max-w-6xl">
+            <h1 
+              className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-10xl font-black leading-[1.05] max-w-5xl lg:max-w-6xl"
+              style={{ color: 'var(--text-primary)' }}
+            >
               Hi, I&apos;m <br className="hidden sm:block" />
-              <span className="text-cyan-400">Parth</span> Manocha
+              <span className="gradient-text">Parth</span> Manocha
             </h1>
           </motion.div>
 
-          {/* Typed role - BIG AND READABLE */}
+          {/* Typed role */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.6 }}
             className="mb-16 lg:mb-20"
           >
-            <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-cyan-500">
+            <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold gradient-text">
               <span id="typed-text" />
             </p>
           </motion.div>
 
-          {/* Short description - READABLE */}
+          {/* Short description */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.8 }}
             className="max-w-2xl mb-24 lg:mb-32"
           >
-            <p className="text-lg sm:text-xl md:text-2xl text-slate-300 font-light leading-relaxed">
+            <p 
+              className="text-lg sm:text-xl md:text-2xl font-light leading-relaxed"
+              style={{ color: 'var(--text-secondary)' }}
+            >
               Crafting exceptional digital experiences through cutting-edge web technologies. Full-stack developer passionate about clean code and intuitive design.
             </p>
           </motion.div>
 
-          {/* CTA Buttons - LARGE AND SPACED */}
+          {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1 }}
-            className="flex flex-col sm:flex-row gap-6 max-w-lg mb-24"
+            className="flex flex-col sm:flex-row gap-6 max-w-4xl mb-24"
           >
-            <motion.button
+            {/* View My Work Button */}
+            <motion.a
+              href={githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.05, y: -4 }}
               whileTap={{ scale: 0.95 }}
-              className="group relative px-10 py-5 rounded-lg font-semibold text-lg text-white overflow-hidden transition-all"
+              className="group relative px-10 py-5 rounded-lg font-semibold text-lg overflow-hidden transition-all cursor-pointer"
+              style={{ color: '#ffffff' }}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600 -z-10" />
               <span className="relative z-10 flex items-center justify-center gap-3">
-                View My Work
+                🔗 View My Work (GitHub)
                 <motion.span
                   animate={{ x: [0, 8, 0] }}
                   transition={{ repeat: Infinity, duration: 1.5 }}
@@ -129,15 +167,22 @@ const Hero = () => {
                   →
                 </motion.span>
               </span>
-            </motion.button>
+            </motion.a>
 
+            {/* Download Resume Button */}
             <motion.button
+              onClick={handleDownloadResume}
               whileHover={{ scale: 1.05, y: -4 }}
               whileTap={{ scale: 0.95 }}
-              className="px-10 py-5 rounded-lg font-semibold text-lg text-cyan-300 border border-white/10 transition-all hover:border-cyan-500/50 hover:bg-white/5"
+              className="px-10 py-5 rounded-lg font-semibold text-lg transition-all cursor-pointer"
+              style={{ 
+                color: 'var(--accent)',
+                border: `1px solid var(--border-color)`,
+                backgroundColor: 'transparent'
+              }}
             >
               <span className="flex items-center justify-center gap-3">
-                Download CV
+                📄 Download Resume
                 <motion.span
                   animate={{ y: [0, -6, 0] }}
                   transition={{ repeat: Infinity, duration: 1.5 }}
@@ -155,22 +200,32 @@ const Hero = () => {
             transition={{ duration: 1, delay: 1.2 }}
             className="flex items-center gap-6"
           >
-            <span className="text-sm text-slate-500 font-light">Connect</span>
-            <div className="flex gap-4 ">
+            <span 
+              className="text-sm font-light"
+              style={{ color: 'var(--text-secondary)' }}
+            >
+              Connect
+            </span>
+            <div className="flex gap-4">
               {[
-                { name: "GitHub", icon: "🔗" },
-                { name: "LinkedIn", icon: "💼" },
-                { name: "Twitter", icon: "𝕏" },
-                { name: "Email", icon: "✉" },
+                { name: "GitHub", icon: "🔗", url: "https://github.com/Eordinary01" },
+                { name: "LinkedIn", icon: "💼", url: "https://linkedin.com/in/parthmanocha01" },
+                { name: "Email", icon: "✉", url: "mailto:parthmanocha66@gmail.com" },
               ].map((social, idx) => (
                 <motion.a
                   key={social.name}
-                  href="#"
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1.3 + idx * 0.1 }}
                   whileHover={{ scale: 1.2, y: -6 }}
-                  className="w-14 h-14 rounded-lg border border-white/10 flex items-center justify-center text-2xl hover:border-cyan-500/50 hover:bg-white/5 transition-all"
+                  className="w-14 h-14 rounded-lg border flex items-center justify-center text-2xl transition-all"
+                  style={{ 
+                    borderColor: 'var(--border-color)',
+                    color: 'var(--text-secondary)'
+                  }}
                 >
                   {social.icon}
                 </motion.a>
@@ -178,10 +233,6 @@ const Hero = () => {
             </div>
           </motion.div>
         </motion.div>
-
-     
-       
-
       </div>
     </section>
   );

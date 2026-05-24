@@ -2,8 +2,11 @@
 
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { useTheme } from "./context/ThemeContext";
 
 export default function Contact() {
+  const { isDarkMode } = useTheme();
+  
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -56,8 +59,8 @@ export default function Contact() {
     {
       icon: "📧",
       label: "Email",
-      value: "parth@example.com",
-      link: "mailto:parth@example.com"
+      value: "parthmanocha66@gmail.com",
+      link: "mailto:parthmanocha66@gmail.com"
     },
     {
       icon: "📱",
@@ -75,17 +78,26 @@ export default function Contact() {
       icon: "💼",
       label: "LinkedIn",
       value: "Connect with me",
-      link: "https://linkedin.com"
+      link: "https://linkedin.com/in/parthmanocha01"
     }
   ];
 
   return (
     <section id="contact" className="min-h-screen bg-inherit relative overflow-hidden">
-      {/* Background elements */}
+      {/* Background elements - Theme aware */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-64 h-64 bg-aqua-500 opacity-5 morphing-shape float" />
-        <div className="absolute bottom-20 right-10 w-48 h-48 bg-aqua-400 opacity-8 rounded-full float-reverse" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-aqua-300 opacity-3 morphing-shape" />
+        <div 
+          className="absolute top-20 left-10 w-64 h-64 opacity-5 morphing-shape float"
+          style={{ backgroundColor: 'var(--accent)' }}
+        />
+        <div 
+          className="absolute bottom-20 right-10 w-48 h-48 rounded-full float-reverse"
+          style={{ backgroundColor: 'var(--accent)', opacity: 0.08 }}
+        />
+        <div 
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 morphing-shape"
+          style={{ backgroundColor: 'var(--accent)', opacity: 0.03 }}
+        />
       </div>
 
       <motion.div
@@ -100,17 +112,20 @@ export default function Contact() {
           className="text-center mb-16"
         >
           <h1 className="text-6xl md:text-7xl font-black mb-8 gradient-text">
-            Let&apos;ss Connect
+            Let's Connect
           </h1>
           <motion.div
             initial={{ width: 0 }}
             animate={isInView ? { width: "100px" } : {}}
             transition={{ duration: 1, delay: 0.5 }}
-            className="h-1 bg-gradient-to-r from-aqua-500 to-aqua-300 mx-auto mb-8"
+            className="h-1 bg-gradient-to-r from-cyan-500 to-cyan-300 mx-auto mb-8"
           />
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            Have a project in mind? Let&apos;ss discuss how we can bring your ideas to life. 
-            I&apos;sm always excited to collaborate on innovative solutions.
+          <p 
+            className="text-xl max-w-2xl mx-auto leading-relaxed"
+            style={{ color: 'var(--text-secondary)' }}
+          >
+            Have a project in mind? Let's discuss how we can bring your ideas to life. 
+            I'm always excited to collaborate on innovative solutions.
           </p>
         </motion.div>
 
@@ -123,9 +138,17 @@ export default function Contact() {
             className="glass-dark rounded-3xl p-8 relative overflow-hidden"
           >
             {/* Background decoration */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-aqua-500 opacity-10 rounded-full transform translate-x-16 -translate-y-16" />
+            <div 
+              className="absolute top-0 right-0 w-32 h-32 rounded-full transform translate-x-16 -translate-y-16"
+              style={{ backgroundColor: 'var(--accent)', opacity: 0.1 }}
+            />
             
-            <h2 className="text-3xl font-bold mb-8 text-white">Send a Message</h2>
+            <h2 
+              className="text-3xl font-bold mb-8"
+              style={{ color: 'var(--text-primary)' }}
+            >
+              Send a Message
+            </h2>
             
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Name Field */}
@@ -135,7 +158,10 @@ export default function Contact() {
                 transition={{ duration: 0.6, delay: 0.5 }}
                 className="relative"
               >
-                <label className="block text-aqua-400 text-sm font-semibold mb-2">
+                <label 
+                  className="block text-sm font-semibold mb-2"
+                  style={{ color: 'var(--accent)' }}
+                >
                   Your Name
                 </label>
                 <input
@@ -146,11 +172,17 @@ export default function Contact() {
                   onFocus={() => setFocusedField("name")}
                   onBlur={() => setFocusedField(null)}
                   placeholder="Enter your full name"
-                  className="w-full px-4 py-4 bg-gray-800 border-2 border-gray-700 rounded-xl text-white placeholder-gray-400 focus:border-aqua-500 focus:outline-none transition-all duration-300"
+                  className="w-full px-4 py-4 border-2 rounded-xl placeholder-gray-400 focus:outline-none transition-all duration-300"
+                  style={{
+                    backgroundColor: isDarkMode ? '#1f2937' : '#f3f4f6',
+                    borderColor: focusedField === "name" ? 'var(--accent)' : (isDarkMode ? '#374151' : '#e5e7eb'),
+                    color: 'var(--text-primary)'
+                  }}
                   required
                 />
                 <motion.div
-                  className="absolute bottom-0 left-0 h-0.5 bg-aqua-500"
+                  className="absolute bottom-0 left-0 h-0.5"
+                  style={{ backgroundColor: 'var(--accent)' }}
                   initial={{ width: 0 }}
                   animate={{ width: focusedField === "name" ? "100%" : 0 }}
                   transition={{ duration: 0.3 }}
@@ -164,7 +196,10 @@ export default function Contact() {
                 transition={{ duration: 0.6, delay: 0.6 }}
                 className="relative"
               >
-                <label className="block text-aqua-400 text-sm font-semibold mb-2">
+                <label 
+                  className="block text-sm font-semibold mb-2"
+                  style={{ color: 'var(--accent)' }}
+                >
                   Email Address
                 </label>
                 <input
@@ -175,11 +210,17 @@ export default function Contact() {
                   onFocus={() => setFocusedField("email")}
                   onBlur={() => setFocusedField(null)}
                   placeholder="your.email@example.com"
-                  className="w-full px-4 py-4 bg-gray-800 border-2 border-gray-700 rounded-xl text-white placeholder-gray-400 focus:border-aqua-500 focus:outline-none transition-all duration-300"
+                  className="w-full px-4 py-4 border-2 rounded-xl placeholder-gray-400 focus:outline-none transition-all duration-300"
+                  style={{
+                    backgroundColor: isDarkMode ? '#1f2937' : '#f3f4f6',
+                    borderColor: focusedField === "email" ? 'var(--accent)' : (isDarkMode ? '#374151' : '#e5e7eb'),
+                    color: 'var(--text-primary)'
+                  }}
                   required
                 />
                 <motion.div
-                  className="absolute bottom-0 left-0 h-0.5 bg-aqua-500"
+                  className="absolute bottom-0 left-0 h-0.5"
+                  style={{ backgroundColor: 'var(--accent)' }}
                   initial={{ width: 0 }}
                   animate={{ width: focusedField === "email" ? "100%" : 0 }}
                   transition={{ duration: 0.3 }}
@@ -193,7 +234,10 @@ export default function Contact() {
                 transition={{ duration: 0.6, delay: 0.7 }}
                 className="relative"
               >
-                <label className="block text-aqua-400 text-sm font-semibold mb-2">
+                <label 
+                  className="block text-sm font-semibold mb-2"
+                  style={{ color: 'var(--accent)' }}
+                >
                   Your Message
                 </label>
                 <textarea
@@ -204,11 +248,17 @@ export default function Contact() {
                   onBlur={() => setFocusedField(null)}
                   placeholder="Tell me about your project or just say hello!"
                   rows={6}
-                  className="w-full px-4 py-4 bg-gray-800 border-2 border-gray-700 rounded-xl text-white placeholder-gray-400 focus:border-aqua-500 focus:outline-none transition-all duration-300 resize-none"
+                  className="w-full px-4 py-4 border-2 rounded-xl placeholder-gray-400 focus:outline-none transition-all duration-300 resize-none"
+                  style={{
+                    backgroundColor: isDarkMode ? '#1f2937' : '#f3f4f6',
+                    borderColor: focusedField === "message" ? 'var(--accent)' : (isDarkMode ? '#374151' : '#e5e7eb'),
+                    color: 'var(--text-primary)'
+                  }}
                   required
                 />
                 <motion.div
-                  className="absolute bottom-0 left-0 h-0.5 bg-aqua-500"
+                  className="absolute bottom-0 left-0 h-0.5"
+                  style={{ backgroundColor: 'var(--accent)' }}
                   initial={{ width: 0 }}
                   animate={{ width: focusedField === "message" ? "100%" : 0 }}
                   transition={{ duration: 0.3 }}
@@ -221,7 +271,8 @@ export default function Contact() {
                 disabled={loading}
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full py-4 bg-aqua-500 text-white rounded-xl font-semibold text-lg hover:bg-aqua-600 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group"
+                className="w-full py-4 text-white rounded-xl font-semibold text-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group"
+                style={{ backgroundColor: 'var(--accent)' }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.8 }}
@@ -245,7 +296,10 @@ export default function Contact() {
                     </>
                   )}
                 </span>
-                <div className="absolute inset-0 bg-aqua-600 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
+                <div 
+                  className="absolute inset-0 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"
+                  style={{ backgroundColor: 'var(--accent-light)', opacity: 0.8 }}
+                />
               </motion.button>
 
               {/* Success Message */}
@@ -269,7 +323,12 @@ export default function Contact() {
             className="space-y-8"
           >
             <div className="glass-dark rounded-3xl p-8">
-              <h2 className="text-3xl font-bold mb-8 text-white">Get in Touch</h2>
+              <h2 
+                className="text-3xl font-bold mb-8"
+                style={{ color: 'var(--text-primary)' }}
+              >
+                Get in Touch
+              </h2>
               <div className="space-y-6">
                 {contactInfo.map((info, index) => (
                   <motion.a
@@ -278,7 +337,8 @@ export default function Contact() {
                     target={info.link.startsWith("http") ? "_blank" : "_self"}
                     rel={info.link.startsWith("http") ? "noopener noreferrer" : ""}
                     whileHover={{ scale: 1.02, x: 5 }}
-                    className="flex items-center p-4 glass rounded-xl hover:bg-aqua-500 hover:bg-opacity-10 transition-all duration-300 group"
+                    className="flex items-center p-4 glass rounded-xl transition-all duration-300 group"
+                    style={{ backgroundColor: 'var(--glass-bg)' }}
                     initial={{ opacity: 0, x: 20 }}
                     animate={isInView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
@@ -287,8 +347,13 @@ export default function Contact() {
                       {info.icon}
                     </span>
                     <div>
-                      <p className="text-aqua-400 font-semibold">{info.label}</p>
-                      <p className="text-gray-300 group-hover:text-white transition-colors">
+                      <p style={{ color: 'var(--accent)' }} className="font-semibold">
+                        {info.label}
+                      </p>
+                      <p 
+                        className="transition-colors group-hover:gradient-text"
+                        style={{ color: 'var(--text-secondary)' }}
+                      >
                         {info.value}
                       </p>
                     </div>
@@ -304,25 +369,35 @@ export default function Contact() {
               transition={{ duration: 0.8, delay: 0.8 }}
               className="glass-dark rounded-3xl p-8"
             >
-              <h3 className="text-2xl font-bold mb-6 text-white">Follow Me</h3>
+              <h3 
+                className="text-2xl font-bold mb-6"
+                style={{ color: 'var(--text-primary)' }}
+              >
+                Follow Me
+              </h3>
               <div className="flex space-x-4">
                 {[
-                  { name: "GitHub", icon: "🔗", color: "#333" },
-                  { name: "LinkedIn", icon: "💼", color: "#0077B5" },
-                  { name: "Twitter", icon: "🐦", color: "#1DA1F2" },
-                  { name: "Instagram", icon: "📷", color: "#E4405F" },
+                  { name: "GitHub", icon: "🔗", link: "https://github.com/Eordinary01" },
+                  { name: "LinkedIn", icon: "💼", link: "https://linkedin.com/in/parthmanocha01" },
+                  { name: "Email", icon: "📧", link: "mailto:parthmanocha66@gmail.com" },
                 ].map((social, index) => (
                   <motion.a
                     key={social.name}
-                    href="#"
+                    href={social.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     whileHover={{ scale: 1.1, y: -5 }}
                     whileTap={{ scale: 0.9 }}
-                    className="w-14 h-14 glass rounded-full flex items-center justify-center hover:bg-aqua-500 hover:text-white transition-all duration-300 group"
+                    className="w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 group"
+                    style={{ 
+                      backgroundColor: 'var(--glass-bg)',
+                      border: `1px solid var(--border-color)`
+                    }}
                     initial={{ opacity: 0, y: 20 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ delay: 1 + index * 0.1 }}
                   >
-                    <span className="text-2xl group-hover:scale-110 transition-transform duration-300">
+                    <span className="text-2xl transition-transform duration-300 group-hover:scale-110">
                       {social.icon}
                     </span>
                   </motion.a>
@@ -341,7 +416,7 @@ export default function Contact() {
                 <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse mr-3" />
                 <span className="text-green-400 font-semibold">Available for Projects</span>
               </div>
-              <p className="text-gray-300">
+              <p style={{ color: 'var(--text-secondary)' }}>
                 Currently accepting new freelance projects and collaboration opportunities.
               </p>
             </motion.div>

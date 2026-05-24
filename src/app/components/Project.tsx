@@ -2,11 +2,14 @@
 import React, { useState, useRef } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { Link as ScrollLink } from 'react-scroll';
+import { useTheme } from '../context/ThemeContext';
 
 const Project = () => {
+  const { isDarkMode } = useTheme();
+  
   const projects = [
     {
-      title: "Vehicel Rental System",
+      title: "Vehicle Rental System",
       description: "A comprehensive vehicle rental management system",
       link: "https://vehicle-rental-frontend-1hw5.vercel.app/",
       color: "#FF6B6B",
@@ -14,10 +17,26 @@ const Project = () => {
       category: "Full Stack"
     },
     {
-      title: "Colloborative Coding Platform",
+      title: "Qnect",
+      description: "An AI powered gamification platform",
+      link: "https://ask-streamfrontend.vercel.app/",
+      color: "#FF6B6B",
+      tech: ["NextJS", "Node.js", "MongoDB"],
+      category: "Full Stack"
+    },
+    {
+      title: "TrainerSync",
+      description: "An Web/Android based Trainer Management Platform",
+      link: "https://trainer-sync-tau.vercel.app/login",
+      color: "#4ECDC4",
+      tech: ["NextJS", "Node.js", "MongoDB", "React Native"],
+      category: "Web App"
+    },
+    {
+      title: "Collaborative Coding Platform",
       description: "A platform for real-time collaborative coding",
       link: "",
-      color: "#4ECDC4",
+      color: "#FF6B6B",
       tech: ["NextJs", "Node.js", "MongoDB"],
       category: "Full Stack"
     },
@@ -45,39 +64,6 @@ const Project = () => {
       tech: ["Next.js", "TypeScript", "Tailwind"],
       category: "Web App"
     },
-    {
-      title: "Expense Tracker",
-      description: "Personal finance management tool",
-      link: "https://expense-trackerf.vercel.app/register",
-      color: "#45B7D1",
-      tech: ["React", "Express", "Chart.js"],
-      category: "Finance"
-    },
-    {
-      title: "NextJs-Frontend",
-      description: "Showcase of Next.js capabilities",
-      link: "https://nextjs-frontend-3bvh.vercel.app/",
-      color: "#F7B731",
-      tech: ["Next.js", "Framer Motion", "CSS"],
-      category: "Frontend"
-    },
-    {
-      title: "Recipe App",
-      description: "Application to make your favourite Recipes",
-      link: "https://recipe-app-oqfn.onrender.com/",
-      color: "#26DE81",
-      tech: ["React", "API", "CSS3"],
-      category: "Lifestyle"
-    },
-    {
-      title: "Shopping Application",
-      description: "E-commerce platform for your favorite items",
-      link: "https://shopping-app-low0.onrender.com/",
-      color: "#A55EEA",
-      tech: ["MERN", "Stripe", "Redux"],
-      category: "E-commerce"
-    },
-   
   ];
 
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -96,6 +82,7 @@ const Project = () => {
   const filteredProjects = filter === "All" ? projects : projects.filter(p => p.category === filter);
 
   const handleCardClick = (link: string, index: number) => {
+    if (!link) return;
     setSelectedProject(index);
     setTimeout(() => {
       window.open(link, "_blank");
@@ -105,16 +92,14 @@ const Project = () => {
 
   return (
     <section id="projects" className="py-20 bg-inherit relative overflow-hidden">
-      {/* Background elements */}
+      {/* Background elements - Theme aware */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
           style={{ y }}
-          className="absolute top-40 left-20 w-72 h-72 bg-aqua-500 opacity-5 morphing-shape"
+          className="absolute top-40 left-20 w-72 h-72 opacity-5 morphing-shape"
+          // style={{ backgroundColor: 'var(--accent)' }}
         />
-        <motion.div
-          style={{ y: useTransform(scrollYProgress, [0, 1], [-80, 80]) }}
-          className="absolute bottom-40 right-20 w-56 h-56 bg-aqua-400 opacity-8 rounded-full"
-        />
+       
       </div>
 
       <motion.div 
@@ -135,9 +120,12 @@ const Project = () => {
             initial={{ width: 0 }}
             animate={isInView ? { width: "120px" } : {}}
             transition={{ duration: 1, delay: 0.5 }}
-            className="h-1 bg-gradient-to-r from-aqua-500 to-aqua-300 mx-auto mb-8"
+            className="h-1 bg-gradient-to-r from-cyan-500 to-cyan-300 mx-auto mb-8"
           />
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+          <p 
+            className="text-xl max-w-2xl mx-auto"
+            style={{ color: 'var(--text-secondary)' }}
+          >
             A collection of projects that showcase my skills and passion for creating innovative solutions
           </p>
         </motion.div>
@@ -157,9 +145,14 @@ const Project = () => {
               whileTap={{ scale: 0.95 }}
               className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
                 filter === category
-                  ? "bg-aqua-500 text-white shadow-lg"
-                  : "glass text-aqua-400 hover:bg-aqua-500 hover:text-white"
+                  ? "text-white shadow-lg"
+                  : "hover:text-white"
               }`}
+              style={{
+                backgroundColor: filter === category ? 'var(--accent)' : 'var(--glass-bg)',
+                color: filter === category ? 'white' : 'var(--accent)',
+                border: filter === category ? 'none' : '1px solid var(--border-color)'
+              }}
             >
               {category}
             </motion.button>
@@ -183,8 +176,11 @@ const Project = () => {
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
               className={`group relative glass-dark rounded-2xl overflow-hidden cursor-pointer transform transition-all duration-500 hover-lift ${
-                selectedProject === index ? 'ring-4 ring-aqua-500 scale-105' : ''
+                selectedProject === index ? 'ring-4 scale-105' : ''
               }`}
+              style={{
+                ringColor: selectedProject === index ? 'var(--accent)' : undefined
+              }}
             >
               {/* Project Image/Background */}
               <div 
@@ -214,7 +210,8 @@ const Project = () => {
                         opacity: hoveredIndex === index ? 1 : 0, 
                         scale: hoveredIndex === index ? 1 : 0 
                       }}
-                      className="w-8 h-8 bg-aqua-500 rounded-full flex items-center justify-center"
+                      className="w-8 h-8 rounded-full flex items-center justify-center"
+                      style={{ backgroundColor: 'var(--accent)' }}
                     >
                       <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -222,10 +219,16 @@ const Project = () => {
                     </motion.div>
                   </div>
 
-                  <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-aqua-400 transition-colors">
+                  <h3 
+                    className="text-2xl font-bold mb-3 transition-colors group-hover:gradient-text"
+                    style={{ color: 'var(--text-primary)' }}
+                  >
                     {project.title}
                   </h3>
-                  <p className="text-gray-300 mb-6 leading-relaxed">
+                  <p 
+                    className="mb-6 leading-relaxed"
+                    style={{ color: 'var(--text-secondary)' }}
+                  >
                     {project.description}
                   </p>
                 </div>
@@ -239,7 +242,11 @@ const Project = () => {
                         initial={{ opacity: 0, scale: 0 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.8 + techIndex * 0.1 }}
-                        className="px-3 py-1 bg-gray-800 text-aqua-400 rounded-full text-sm font-medium"
+                        className="px-3 py-1 rounded-full text-sm font-medium"
+                        style={{ 
+                          backgroundColor: isDarkMode ? '#1f2937' : '#e5e7eb',
+                          color: 'var(--accent)'
+                        }}
                       >
                         {tech}
                       </motion.span>
@@ -252,7 +259,8 @@ const Project = () => {
                       initial={{ width: 0 }}
                       animate={{ width: "100%" }}
                       transition={{ duration: 0.8 }}
-                      className="h-1 bg-aqua-500 rounded-full"
+                      className="h-1 rounded-full"
+                      style={{ backgroundColor: 'var(--accent)' }}
                     />
                   )}
                 </div>
@@ -260,7 +268,7 @@ const Project = () => {
 
               {/* Hover overlay */}
               <motion.div
-                className="absolute inset-0 bg-gradient-to-t from-aqua-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 style={{ 
                   background: `linear-gradient(to top, ${project.color}30, transparent)` 
                 }}
@@ -278,8 +286,11 @@ const Project = () => {
         >
           <div className="glass-dark rounded-3xl p-12 max-w-4xl mx-auto">
             <h3 className="text-4xl font-bold mb-6 gradient-text">Ready to Collaborate?</h3>
-            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-              Let&apos;ss turn your next big idea into reality! I&apos;sm always excited to work on innovative projects 
+            <p 
+              className="text-xl mb-8 leading-relaxed"
+              style={{ color: 'var(--text-secondary)' }}
+            >
+              Let's turn your next big idea into reality! I'm always excited to work on innovative projects 
               and bring creative solutions to life.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -292,7 +303,8 @@ const Project = () => {
                 <motion.button
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-aqua-500 text-white rounded-full text-lg font-semibold hover:bg-aqua-600 transition-colors duration-300 pulse-glow"
+                  className="px-8 py-4 text-white rounded-full text-lg font-semibold transition-colors duration-300 pulse-glow"
+                  style={{ backgroundColor: 'var(--accent)' }}
                 >
                   Get in Touch
                 </motion.button>
@@ -300,7 +312,12 @@ const Project = () => {
               <motion.button
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 glass border-2 border-aqua-500 text-aqua-400 rounded-full text-lg font-semibold hover:bg-aqua-500 hover:text-white transition-all duration-300"
+                className="px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300"
+                style={{ 
+                  backgroundColor: 'var(--glass-bg)',
+                  border: `2px solid var(--accent)`,
+                  color: 'var(--accent)'
+                }}
               >
                 View All Projects
               </motion.button>
