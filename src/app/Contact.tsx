@@ -112,7 +112,7 @@ export default function Contact() {
           className="text-center mb-16"
         >
           <h1 className="text-6xl md:text-7xl font-black mb-8 gradient-text">
-            Let's Connect
+            Let&apos;s Connect
           </h1>
           <motion.div
             initial={{ width: 0 }}
@@ -124,8 +124,8 @@ export default function Contact() {
             className="text-xl max-w-2xl mx-auto leading-relaxed"
             style={{ color: 'var(--text-secondary)' }}
           >
-            Have a project in mind? Let's discuss how we can bring your ideas to life. 
-            I'm always excited to collaborate on innovative solutions.
+            Have a project in mind? Let&apos;s discuss how we can bring your ideas to life. 
+            I&apos;m always excited to collaborate on innovative solutions.
           </p>
         </motion.div>
 

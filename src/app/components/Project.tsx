@@ -290,7 +290,7 @@ const Project = () => {
               className="text-xl mb-8 leading-relaxed"
               style={{ color: 'var(--text-secondary)' }}
             >
-              Let's turn your next big idea into reality! I'm always excited to work on innovative projects 
+              Let&apos;s turn your next big idea into reality! I&apos;m always excited to work on innovative projects 
               and bring creative solutions to life.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
