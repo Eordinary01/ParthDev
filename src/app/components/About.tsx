@@ -1,269 +1,112 @@
 "use client";
-import React, { useState, useRef } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import { useTheme } from "../context/ThemeContext";
+import React from "react";
 
-const About = () => {
-  const { isDarkMode } = useTheme();
-  const [showFrontend, setShowFrontend] = useState(true);
-  const [hoveredSkill, setHoveredSkill] = useState<number | null>(null);
-  const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.3 });
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
-
-  const frontendSkills = [
-    { name: "JavaScript", level: 95, icon: "🟨" },
-    { name: "React/Next.js", level: 90, icon: "⚛️" },
-    { name: "TypeScript", level: 85, icon: "🔷" },
-    { name: "Tailwind CSS", level: 92, icon: "🎨" },
-    { name: "Web Development", level: 88, icon: "🌐" },
-  ];
-
-  const backendSkills = [
-    { name: "Node.js", level: 87, icon: "🟢" },
-    { name: "MongoDB", level: 83, icon: "🍃" },
-    { name: "Express.js", level: 85, icon: "🚀" },
-    { name: "API Development", level: 89, icon: "🔗" },
-  ];
-
-  const currentSkills = showFrontend ? frontendSkills : backendSkills;
-
-  const handleFlip = () => {
-    setShowFrontend((prev) => !prev);
-  };
-
-  const openGitHub = () => {
-    window.open("https://github.com/Eordinary01", "_blank");
-  };
-
+export default function About() {
   return (
-    <section id="about" className="min-h-screen my-auto relative overflow-hidden bg-transparent">
-      {/* Animated background elements - Theme aware */}
-      <div className="absolute inset-0 overflow-hidden">
-       
-        <motion.div
-          style={{ y: useTransform(scrollYProgress, [0, 1], [-50, 50]) }}
-          className="absolute bottom-20 right-10 w-48 h-48 rounded-full"
-          
-        />
-      </div>
+    <section id="about" className="section-spacing bg-canvas">
+      <div className="container-main">
+        {/* Section header */}
+        <div className="flex items-center gap-3 mb-8">
+          <span className="text-gh-green font-mono text-sm">$</span>
+          <h2 className="text-3xl font-bold text-gh-text font-mono">cat about.md</h2>
+        </div>
+        <div className="h-px bg-border mb-12" />
 
-      <motion.div
-        ref={containerRef}
-        style={{ opacity }}
-        className="container mx-auto px-4 py-20 relative z-10"
-      >
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20"
-        >
-          <motion.h2
-            className="text-6xl md:text-7xl font-black mb-8 cursor-pointer relative inline-block"
-            onClick={openGitHub}
-            whileHover={{ scale: 1.05 }}
-          >
-            <span className="gradient-text">About Me</span>
-            <motion.div
-              className="absolute -inset-4 rounded-2xl -z-10"
-              style={{ backgroundColor: 'var(--accent)', opacity: 0.2 }}
-              whileHover={{ scale: 1.1, opacity: 0.3 }}
-              transition={{ duration: 0.3 }}
-            />
-          </motion.h2>
-
-          <motion.div
-            initial={{ width: 0 }}
-            animate={isInView ? { width: "100px" } : {}}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="h-1 bg-gradient-to-r from-cyan-500 to-cyan-300 mx-auto mb-8"
-          />
-
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed"
-            style={{ color: 'var(--text-secondary)' }}
-          >
-            My name is <span className="gradient-text font-semibold">Parth Manocha</span> and I am from Jaipur. 
-            As a child, I&apos;ve always had an interest in tech stuff and the IT industry. 
-            Since then, I started thinking about how things work here and finally 
-            decided to start programming and have a look around this world...
-          </motion.p>
-        </motion.div>
-
-        {/* Skills Section */}
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="glass-dark rounded-3xl p-8 md:p-12 relative overflow-hidden"
-          >
-            {/* Background decoration - Theme aware */}
-            <div 
-              className="absolute top-0 right-0 w-32 h-32 rounded-full transform translate-x-16 -translate-y-16"
-              style={{ backgroundColor: 'var(--accent)', opacity: 0.1 }}
-            />
-            <div 
-              className="absolute bottom-0 left-0 w-24 h-24 rounded-full transform -translate-x-12 translate-y-12"
-              style={{ backgroundColor: 'var(--accent)', opacity: 0.08 }}
-            />
-
-            {/* Skills Header */}
-            <div className="flex flex-col md:flex-row justify-between items-center mb-12">
-              <motion.h3
-                className="text-4xl md:text-5xl font-bold mb-4 md:mb-0"
-                style={{ color: 'var(--text-primary)' }}
-                initial={{ opacity: 0, x: -50 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.8 }}
-              >
-                {showFrontend ? "Frontend" : "Backend"} Skills
-              </motion.h3>
-
-              <motion.button
-                onClick={handleFlip}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="group relative px-6 py-3 text-white rounded-full font-semibold overflow-hidden"
-                style={{ backgroundColor: 'var(--accent)' }}
-                initial={{ opacity: 0, x: 50 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.8 }}
-              >
-                <span className="relative z-10 flex items-center">
-                  Switch to {showFrontend ? "Backend" : "Frontend"}
-                  <motion.span
-                    className="ml-2"
-                    animate={{ rotate: showFrontend ? 0 : 180 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    ↻
-                  </motion.span>
-                </span>
-                <div 
-                  className="absolute inset-0 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"
-                  style={{ backgroundColor: 'var(--accent-light)', opacity: 0.8 }}
-                />
-              </motion.button>
+        {/* README.md style container */}
+        <div className="max-w-4xl">
+          <div className="bg-default border border-border rounded-md overflow-hidden">
+            {/* README header bar */}
+            <div className="flex items-center gap-2 px-4 py-2 bg-subtle border-b border-border">
+              <svg viewBox="0 0 24 24" className="w-4 h-4 text-gh-secondary" fill="currentColor">
+                <path d="M14.25 15.75l-4.5-4.5 4.5-4.5 1.5 1.5L12.75 12l3 3.75-1.5 1.5z" />
+              </svg>
+              <span className="text-sm text-gh-secondary font-mono">About.md</span>
             </div>
 
-            {/* Skills Grid */}
-            <motion.div
-              key={showFrontend ? "frontend" : "backend"}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-            >
-              {currentSkills.map((skill, index) => (
-                <motion.div
-                  key={skill.name}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 1 + index * 0.1 }}
-                  onMouseEnter={() => setHoveredSkill(index)}
-                  onMouseLeave={() => setHoveredSkill(null)}
-                  className="group relative"
-                >
-                  <div className="glass rounded-2xl p-6 hover-lift relative overflow-hidden">
-                    {/* Skill icon and name */}
-                    <div className="flex items-center mb-4">
-                      <span className="text-3xl mr-3">{skill.icon}</span>
-                      <h4 
-                        className="text-xl font-semibold transition-colors group-hover:gradient-text"
-                        style={{ color: 'var(--text-primary)' }}
-                      >
-                        {skill.name}
-                      </h4>
-                    </div>
+            {/* Content */}
+            <div className="p-6 md:p-8 space-y-6">
+              <h1 className="text-4xl font-bold text-gh-text border-b border-border pb-4">
+                Hey there! 👋
+              </h1>
 
-                    {/* Progress bar */}
-                    <div className="relative">
-                      <div 
-                        className="w-full rounded-full h-3 mb-2"
-                        style={{ backgroundColor: isDarkMode ? '#374151' : '#e5e7eb' }}
-                      >
-                        <motion.div
-                          className="h-3 rounded-full relative overflow-hidden"
-                          style={{ 
-                            background: `linear-gradient(90deg, var(--accent), var(--accent-light))`
-                          }}
-                          initial={{ width: 0 }}
-                          animate={isInView ? { width: `${skill.level}%` } : {}}
-                          transition={{ duration: 1.5, delay: 1.2 + index * 0.1 }}
-                        >
-                          <div className="absolute inset-0 bg-white opacity-30 animate-pulse" />
-                        </motion.div>
-                      </div>
-                      <motion.span
-                        className="text-sm font-semibold"
-                        style={{ color: 'var(--accent)' }}
-                        initial={{ opacity: 0 }}
-                        animate={isInView ? { opacity: 1 } : {}}
-                        transition={{ delay: 1.5 + index * 0.1 }}
-                      >
-                        {skill.level}%
-                      </motion.span>
-                    </div>
+              <div className="space-y-4 text-gh-secondary leading-relaxed">
+                <p>
+                  I&apos;m <strong className="text-gh-text">Parth Manocha</strong>, a Full Stack Developer
+                  based in <strong className="text-gh-text">Jaipur, India</strong>. I&apos;m passionate about
+                  building web applications that make a difference.
+                </p>
 
-                    {/* Hover effect */}
-                    <motion.div
-                      className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-2xl"
-                      style={{ backgroundColor: 'var(--accent)' }}
-                      animate={hoveredSkill === index ? { scale: [1, 1.05, 1] } : {}}
-                      transition={{ duration: 0.3 }}
-                    />
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
+                <p>
+                  My journey into tech started with curiosity about how things work.
+                  That curiosity led me to programming, and I haven&apos;t looked back since.
+                  I specialize in the <span className="text-gh-blue">MERN stack</span> and{" "}
+                  <span className="text-gh-blue">Next.js</span>, with a strong focus on
+                  both frontend experiences and backend architecture.
+                </p>
 
-            {/* Additional info */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 1.5 }}
-              className="mt-12 text-center"
-            >
-              <p 
-                className="text-lg mb-6"
-                style={{ color: 'var(--text-secondary)' }}
-              >
-                Constantly learning and evolving with the latest technologies
-              </p>
-              <div className="flex justify-center space-x-4">
-                {["🚀", "💡", "⚡", "🎯"].map((emoji, index) => (
-                  <motion.span
-                    key={index}
-                    className="text-2xl"
-                    animate={{ y: [0, -10, 0] }}
-                    transition={{
-                      repeat: Infinity,
-                      duration: 2,
-                      delay: index * 0.2,
-                    }}
-                  >
-                    {emoji}
-                  </motion.span>
-                ))}
+                <p>
+                  When I&apos;m not coding, you&apos;ll find me exploring new technologies,
+                  contributing to open-source projects, and constantly pushing myself
+                  to learn something new.
+                </p>
               </div>
-            </motion.div>
-          </motion.div>
+
+              {/* What I do */}
+              <div className="pt-4 border-t border-border">
+                <h2 className="text-2xl font-bold text-gh-text mb-4">What I Do</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {[
+                    {
+                      title: "Frontend",
+                      desc: "Building responsive, performant UIs with React, Next.js, and modern CSS",
+                      color: "text-gh-blue",
+                    },
+                    {
+                      title: "Backend",
+                      desc: "Designing scalable APIs and services with Node.js, Express, and MongoDB",
+                      color: "text-gh-green",
+                    },
+                    {
+                      title: "Full Stack",
+                      desc: "End-to-end application development from database design to deployment",
+                      color: "text-gh-purple",
+                    },
+                  ].map((item) => (
+                    <div
+                      key={item.title}
+                      className="p-4 border border-border rounded-md hover:border-gh-muted transition-colors"
+                    >
+                      <h3 className={`font-mono font-bold ${item.color} mb-2`}>
+                        {item.title}
+                      </h3>
+                      <p className="text-sm text-gh-secondary">{item.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Tech I work with */}
+              <div className="pt-4 border-t border-border">
+                <h2 className="text-2xl font-bold text-gh-text mb-4">Tech Stack</h2>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    "JavaScript", "TypeScript", "React", "Next.js", "Node.js",
+                    "Express.js", "MongoDB", "Tailwind CSS", "Git", "REST APIs",
+                    "React Native", "PostgreSQL", "Docker", "Vercel",
+                  ].map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1 text-sm font-mono bg-subtle border border-border rounded-full text-gh-secondary hover:text-gh-text hover:border-gh-muted transition-colors"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
-};
-
-export default About;
+}

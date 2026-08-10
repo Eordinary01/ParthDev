@@ -9,27 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@react-three/drei": "^9.56.10",
-    "@react-three/fiber": "^8.13.4",
-    "@types/three": "^0.178.1",
-    "framer-motion": "^12.0.0-alpha.0",
-    "gsap": "^3.13.0",
-    "lenis": "^1.3.8",
+    "@react-three/drei": "^9.117.3",
+    "@react-three/fiber": "^8.17.10",
     "mongoose": "^8.4.1",
     "next": "14.2.35",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-id-swiper": "^4.0.0",
     "react-scroll": "^1.9.0",
-    "react-tsparticles": "^2.12.2",
-    "three": "^0.178.0",
-    "typed.js": "^2.1.0"
+    "three": "^0.170.0"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/react-scroll": "^1.8.10",
+    "@types/three": "^0.185.4",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
     "postcss": "^8",

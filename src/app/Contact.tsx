@@ -1,428 +1,202 @@
 "use client";
-
-import { useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { useTheme } from "./context/ThemeContext";
+import React, { useState } from "react";
+import Terminal from "./components/Terminal";
 
 export default function Contact() {
-  const { isDarkMode } = useTheme();
-  
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [successMessage, setSuccessMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const [focusedField, setFocusedField] = useState<string | null>(null);
-  
-  const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.3 });
+  const [cmdHistory, setCmdHistory] = useState<string[]>([]);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    
+    setCmdHistory((prev) => [...prev, `> ./send.sh --name "${form.name}" --email "${form.email}"`]);
+
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
-      
+
       if (res.ok) {
+        setCmdHistory((prev) => [...prev, "Message sent successfully!"]);
         setSuccessMessage("Message sent successfully! I'll get back to you soon.");
         setForm({ name: "", email: "", message: "" });
-        setTimeout(() => setSuccessMessage(""), 5000);
+        setTimeout(() => {
+          setSuccessMessage("");
+          setCmdHistory([]);
+        }, 5000);
       } else {
-        throw new Error("Failed to send message");
+        throw new Error("Failed");
       }
-    } catch (error) {
-      alert("Failed to send message. Please try again.");
+    } catch {
+      setCmdHistory((prev) => [...prev, "Failed to send message. Please try again."]);
     } finally {
       setLoading(false);
     }
   };
 
   const contactInfo = [
-    {
-      icon: "📧",
-      label: "Email",
-      value: "parthmanocha66@gmail.com",
-      link: "mailto:parthmanocha66@gmail.com"
-    },
-    {
-      icon: "📱",
-      label: "Phone",
-      value: "+91 12345 67890",
-      link: "tel:+911234567890"
-    },
-    {
-      icon: "📍",
-      label: "Location",
-      value: "Jaipur, Rajasthan",
-      link: "#"
-    },
-    {
-      icon: "💼",
-      label: "LinkedIn",
-      value: "Connect with me",
-      link: "https://linkedin.com/in/parthmanocha01"
-    }
+    { label: "EMAIL", value: "parthmanocha66@gmail.com", link: "mailto:parthmanocha66@gmail.com", icon: "✉" },
+    { label: "GITHUB", value: "Eordinary01", link: "https://github.com/Eordinary01", icon: "⌨" },
+    { label: "LINKEDIN", value: "parthmanocha01", link: "https://linkedin.com/in/parthmanocha01", icon: "⊞" },
+    { label: "LOCATION", value: "Jaipur, Rajasthan", link: "#", icon: "◎" },
   ];
 
   return (
-    <section id="contact" className="min-h-screen bg-inherit relative overflow-hidden">
-      {/* Background elements - Theme aware */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div 
-          className="absolute top-20 left-10 w-64 h-64 opacity-5 morphing-shape float"
-          style={{ backgroundColor: 'var(--accent)' }}
-        />
-        <div 
-          className="absolute bottom-20 right-10 w-48 h-48 rounded-full float-reverse"
-          style={{ backgroundColor: 'var(--accent)', opacity: 0.08 }}
-        />
-        <div 
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 morphing-shape"
-          style={{ backgroundColor: 'var(--accent)', opacity: 0.03 }}
-        />
-      </div>
+    <section id="contact" className="section-spacing bg-canvas">
+      <div className="container-main">
+        <div className="flex items-center gap-3 mb-8">
+          <span className="text-gh-green font-mono text-sm">$</span>
+          <h2 className="text-3xl font-bold text-gh-text font-mono">./contact.sh</h2>
+        </div>
+        <div className="h-px bg-border mb-12" />
 
-      <motion.div
-        ref={containerRef}
-        className="container mx-auto px-4 py-20 relative z-10"
-      >
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h1 className="text-6xl md:text-7xl font-black mb-8 gradient-text">
-            Let&apos;s Connect
-          </h1>
-          <motion.div
-            initial={{ width: 0 }}
-            animate={isInView ? { width: "100px" } : {}}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="h-1 bg-gradient-to-r from-cyan-500 to-cyan-300 mx-auto mb-8"
-          />
-          <p 
-            className="text-xl max-w-2xl mx-auto leading-relaxed"
-            style={{ color: 'var(--text-secondary)' }}
-          >
-            Have a project in mind? Let&apos;s discuss how we can bring your ideas to life. 
-            I&apos;m always excited to collaborate on innovative solutions.
-          </p>
-        </motion.div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div>
+            <Terminal title="parth@dev:~/contact" className="h-full">
+              <div className="space-y-4">
+                {cmdHistory.map((cmd, i) => (
+                  <div key={i} className="text-sm">
+                    <span className={cmd.startsWith("Message sent") ? "text-gh-green" : cmd.startsWith("Failed") ? "text-gh-red" : "text-gh-secondary"}>
+                      {cmd}
+                    </span>
+                  </div>
+                ))}
 
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="glass-dark rounded-3xl p-8 relative overflow-hidden"
-          >
-            {/* Background decoration */}
-            <div 
-              className="absolute top-0 right-0 w-32 h-32 rounded-full transform translate-x-16 -translate-y-16"
-              style={{ backgroundColor: 'var(--accent)', opacity: 0.1 }}
-            />
-            
-            <h2 
-              className="text-3xl font-bold mb-8"
-              style={{ color: 'var(--text-primary)' }}
-            >
-              Send a Message
-            </h2>
-            
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Name Field */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className="relative"
-              >
-                <label 
-                  className="block text-sm font-semibold mb-2"
-                  style={{ color: 'var(--accent)' }}
-                >
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  value={form.name}
-                  onChange={handleChange}
-                  onFocus={() => setFocusedField("name")}
-                  onBlur={() => setFocusedField(null)}
-                  placeholder="Enter your full name"
-                  className="w-full px-4 py-4 border-2 rounded-xl placeholder-gray-400 focus:outline-none transition-all duration-300"
-                  style={{
-                    backgroundColor: isDarkMode ? '#1f2937' : '#f3f4f6',
-                    borderColor: focusedField === "name" ? 'var(--accent)' : (isDarkMode ? '#374151' : '#e5e7eb'),
-                    color: 'var(--text-primary)'
-                  }}
-                  required
-                />
-                <motion.div
-                  className="absolute bottom-0 left-0 h-0.5"
-                  style={{ backgroundColor: 'var(--accent)' }}
-                  initial={{ width: 0 }}
-                  animate={{ width: focusedField === "name" ? "100%" : 0 }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.div>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div>
+                    <label className="block text-sm text-gh-green mb-1 font-mono">
+                      $ echo &quot;Your Name&quot;
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={form.name}
+                      onChange={handleChange}
+                      placeholder="Enter your name"
+                      className="input-terminal"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm text-gh-green mb-1 font-mono">
+                      $ echo &quot;Your Email&quot;
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={form.email}
+                      onChange={handleChange}
+                      placeholder="you@example.com"
+                      className="input-terminal"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm text-gh-green mb-1 font-mono">
+                      $ cat &gt; message.txt
+                    </label>
+                    <textarea
+                      name="message"
+                      value={form.message}
+                      onChange={handleChange}
+                      placeholder="Your message..."
+                      rows={5}
+                      className="input-terminal resize-none"
+                      required
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {loading ? "$ sending..." : "$ ./send.sh"}
+                  </button>
+                </form>
 
-              {/* Email Field */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                className="relative"
-              >
-                <label 
-                  className="block text-sm font-semibold mb-2"
-                  style={{ color: 'var(--accent)' }}
-                >
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  onFocus={() => setFocusedField("email")}
-                  onBlur={() => setFocusedField(null)}
-                  placeholder="your.email@example.com"
-                  className="w-full px-4 py-4 border-2 rounded-xl placeholder-gray-400 focus:outline-none transition-all duration-300"
-                  style={{
-                    backgroundColor: isDarkMode ? '#1f2937' : '#f3f4f6',
-                    borderColor: focusedField === "email" ? 'var(--accent)' : (isDarkMode ? '#374151' : '#e5e7eb'),
-                    color: 'var(--text-primary)'
-                  }}
-                  required
-                />
-                <motion.div
-                  className="absolute bottom-0 left-0 h-0.5"
-                  style={{ backgroundColor: 'var(--accent)' }}
-                  initial={{ width: 0 }}
-                  animate={{ width: focusedField === "email" ? "100%" : 0 }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.div>
+                {successMessage && (
+                  <div className="text-sm text-gh-green border border-gh-green/30 bg-gh-green/10 rounded-md p-3 font-mono">
+                    {successMessage}
+                  </div>
+                )}
+              </div>
+            </Terminal>
+          </div>
 
-              {/* Message Field */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.7 }}
-                className="relative"
-              >
-                <label 
-                  className="block text-sm font-semibold mb-2"
-                  style={{ color: 'var(--accent)' }}
-                >
-                  Your Message
-                </label>
-                <textarea
-                  name="message"
-                  value={form.message}
-                  onChange={handleChange}
-                  onFocus={() => setFocusedField("message")}
-                  onBlur={() => setFocusedField(null)}
-                  placeholder="Tell me about your project or just say hello!"
-                  rows={6}
-                  className="w-full px-4 py-4 border-2 rounded-xl placeholder-gray-400 focus:outline-none transition-all duration-300 resize-none"
-                  style={{
-                    backgroundColor: isDarkMode ? '#1f2937' : '#f3f4f6',
-                    borderColor: focusedField === "message" ? 'var(--accent)' : (isDarkMode ? '#374151' : '#e5e7eb'),
-                    color: 'var(--text-primary)'
-                  }}
-                  required
-                />
-                <motion.div
-                  className="absolute bottom-0 left-0 h-0.5"
-                  style={{ backgroundColor: 'var(--accent)' }}
-                  initial={{ width: 0 }}
-                  animate={{ width: focusedField === "message" ? "100%" : 0 }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.div>
-
-              {/* Submit Button */}
-              <motion.button
-                type="submit"
-                disabled={loading}
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full py-4 text-white rounded-xl font-semibold text-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group"
-                style={{ backgroundColor: 'var(--accent)' }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.8 }}
-              >
-                <span className="relative z-10 flex items-center justify-center">
-                  {loading ? (
-                    <>
-                      <div className="spinner mr-3" />
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      Send Message
-                      <motion.span
-                        className="ml-2"
-                        animate={{ x: [0, 5, 0] }}
-                        transition={{ repeat: Infinity, duration: 1.5 }}
-                      >
-                        →
-                      </motion.span>
-                    </>
-                  )}
-                </span>
-                <div 
-                  className="absolute inset-0 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"
-                  style={{ backgroundColor: 'var(--accent-light)', opacity: 0.8 }}
-                />
-              </motion.button>
-
-              {/* Success Message */}
-              {successMessage && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20, scale: 0.9 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  className="glass border border-green-500 rounded-xl p-4 text-green-400 text-center font-semibold"
-                >
-                  ✅ {successMessage}
-                </motion.div>
-              )}
-            </form>
-          </motion.div>
-
-          {/* Contact Information */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="space-y-8"
-          >
-            <div className="glass-dark rounded-3xl p-8">
-              <h2 
-                className="text-3xl font-bold mb-8"
-                style={{ color: 'var(--text-primary)' }}
-              >
-                Get in Touch
-              </h2>
-              <div className="space-y-6">
-                {contactInfo.map((info, index) => (
-                  <motion.a
+          <div className="space-y-4">
+            <div className="bg-default border border-border rounded-md p-6">
+              <h3 className="text-lg font-bold text-gh-text font-mono mb-4">
+                Contact Information
+              </h3>
+              <p className="text-gh-secondary text-sm mb-6">
+                Feel free to reach out through any of these channels.
+                I&apos;m always open to discussing new projects, creative ideas,
+                or opportunities to be part of your vision.
+              </p>
+              <div className="space-y-3">
+                {contactInfo.map((info) => (
+                  <a
                     key={info.label}
                     href={info.link}
                     target={info.link.startsWith("http") ? "_blank" : "_self"}
                     rel={info.link.startsWith("http") ? "noopener noreferrer" : ""}
-                    whileHover={{ scale: 1.02, x: 5 }}
-                    className="flex items-center p-4 glass rounded-xl transition-all duration-300 group"
-                    style={{ backgroundColor: 'var(--glass-bg)' }}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
+                    className="flex items-center gap-4 p-3 border border-border rounded-md hover:border-gh-muted hover:bg-subtle transition-all group"
                   >
-                    <span className="text-3xl mr-4 group-hover:scale-110 transition-transform duration-300">
+                    <span className="w-10 h-10 flex items-center justify-center bg-subtle border border-border rounded-md text-gh-secondary group-hover:text-gh-text group-hover:border-gh-muted transition-colors font-mono">
                       {info.icon}
                     </span>
-                    <div>
-                      <p style={{ color: 'var(--accent)' }} className="font-semibold">
+                    <div className="min-w-0">
+                      <p className="text-xs text-gh-muted font-mono uppercase tracking-wider">
                         {info.label}
                       </p>
-                      <p 
-                        className="transition-colors group-hover:gradient-text"
-                        style={{ color: 'var(--text-secondary)' }}
-                      >
+                      <p className="text-sm text-gh-text group-hover:text-gh-blue transition-colors truncate">
                         {info.value}
                       </p>
                     </div>
-                  </motion.a>
+                  </a>
                 ))}
               </div>
             </div>
 
-            {/* Social Links */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="glass-dark rounded-3xl p-8"
-            >
-              <h3 
-                className="text-2xl font-bold mb-6"
-                style={{ color: 'var(--text-primary)' }}
-              >
-                Follow Me
-              </h3>
-              <div className="flex space-x-4">
-                {[
-                  { name: "GitHub", icon: "🔗", link: "https://github.com/Eordinary01" },
-                  { name: "LinkedIn", icon: "💼", link: "https://linkedin.com/in/parthmanocha01" },
-                  { name: "Email", icon: "📧", link: "mailto:parthmanocha66@gmail.com" },
-                ].map((social, index) => (
-                  <motion.a
-                    key={social.name}
-                    href={social.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1, y: -5 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 group"
-                    style={{ 
-                      backgroundColor: 'var(--glass-bg)',
-                      border: `1px solid var(--border-color)`
-                    }}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 1 + index * 0.1 }}
-                  >
-                    <span className="text-2xl transition-transform duration-300 group-hover:scale-110">
-                      {social.icon}
-                    </span>
-                  </motion.a>
-                ))}
+            <div className="bg-default border border-border rounded-md p-6">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-gh-green animate-pulse" />
+                <span className="text-sm text-gh-green font-mono font-bold">
+                  Available for Projects
+                </span>
               </div>
-            </motion.div>
-
-            {/* Availability Status */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 1 }}
-              className="glass-dark rounded-3xl p-8 text-center"
-            >
-              <div className="flex items-center justify-center mb-4">
-                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse mr-3" />
-                <span className="text-green-400 font-semibold">Available for Projects</span>
-              </div>
-              <p style={{ color: 'var(--text-secondary)' }}>
+              <p className="text-sm text-gh-secondary">
                 Currently accepting new freelance projects and collaboration opportunities.
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+
+            <div className="bg-default border border-border rounded-md p-6">
+              <h3 className="text-sm text-gh-secondary font-mono uppercase tracking-wider mb-4">
+                Quick Connect
+              </h3>
+              <div className="flex gap-3">
+                <a href="https://github.com/Eordinary01" target="_blank" rel="noopener noreferrer" className="btn-outline flex-1 text-center text-sm">
+                  GitHub
+                </a>
+                <a href="https://linkedin.com/in/parthmanocha01" target="_blank" rel="noopener noreferrer" className="btn-outline flex-1 text-center text-sm">
+                  LinkedIn
+                </a>
+                <a href="mailto:parthmanocha66@gmail.com" className="btn-outline flex-1 text-center text-sm">
+                  Email
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
