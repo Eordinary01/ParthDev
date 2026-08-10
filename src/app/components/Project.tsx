@@ -15,13 +15,13 @@ const fallbackRepos: GitHubRepo[] = [
     created_at: "2024-05-03", updated_at: "2026-06-11", fork: false,
   },
   {
-    id: 2, name: "Telegram_Bot", description: "Full-stack Telegram bot with web dashboard",
+    id: 2, name: "Telegram_Bot", description: "Real-time Gmail priority filtering for JECRC University students with Telegram bot",
     html_url: "https://github.com/Eordinary01/Telegram_Bot", homepage: "https://telegram-bot-web-coral.vercel.app",
     stargazers_count: 0, forks_count: 0, language: "TypeScript", topics: ["telegram", "bot", "typescript"],
     created_at: "2026-07-25", updated_at: "2026-08-09", fork: false,
   },
   {
-    id: 3, name: "axon-gateway", description: "Lightweight API gateway and proxy service",
+    id: 3, name: "axon-gateway", description: "Config-driven distributed API gateway with JWT auth, rate limiting, and circuit breaker",
     html_url: "https://github.com/Eordinary01/axon-gateway", homepage: "",
     stargazers_count: 0, forks_count: 0, language: "JavaScript", topics: ["api-gateway", "proxy", "docker"],
     created_at: "2026-07-25", updated_at: "2026-07-26", fork: false,
@@ -107,25 +107,24 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="section-spacing bg-canvas">
-      <div className="container-main">
-        {/* Section header */}
-        <div className="flex items-center gap-3 mb-8">
+    <section id="projects" className="section-spacing bg-canvas relative overflow-hidden">
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-gh-green opacity-10 rounded-full blur-3xl animate-float-slow" />
+
+      <div className="container-main relative z-10">
+        <div className="flex items-center gap-3 mb-8 hero-slide-up">
           <span className="text-gh-green font-mono text-sm">$</span>
           <h2 className="text-3xl font-bold text-gh-text font-mono">ls ~/projects</h2>
         </div>
-        <div className="h-px bg-border mb-12" />
+        <div className="h-px bg-border mb-12 hero-slide-up" style={{ animationDelay: "0.1s" }} />
 
-        {/* Featured Projects */}
-        <div className="mb-16">
+        <div className="mb-16 hero-slide-up" style={{ animationDelay: "0.2s" }}>
           <FeaturedProjects />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Left sidebar - Stats */}
-          <div className="lg:col-span-1 space-y-6">
+          <div className="lg:col-span-1 space-y-6 hero-slide-up" style={{ animationDelay: "0.3s" }}>
             {profile && (
-              <div className="bg-default border border-border rounded-md p-6">
+              <div className="bg-default border border-border rounded-md p-6 hover:shadow-[0_10px_30px_rgba(0,0,0,0.3)] hover:scale-[1.02] transition-all duration-300">
                 <div className="flex items-center gap-4 mb-4">
                   <Image
                     src={profile.avatar_url}
@@ -150,19 +149,19 @@ export default function Projects() {
               </div>
             )}
 
-            <GitHubStats
-              publicRepos={profile?.public_repos || repos.length}
-              followers={profile?.followers || 0}
-              following={profile?.following || 0}
-              totalStars={totalStars}
-              topLanguages={topLanguages}
-            />
+            <div className="hero-slide-up" style={{ animationDelay: "0.4s" }}>
+              <GitHubStats
+                publicRepos={profile?.public_repos || repos.length}
+                followers={profile?.followers || 0}
+                following={profile?.following || 0}
+                totalStars={totalStars}
+                topLanguages={topLanguages}
+              />
+            </div>
           </div>
 
-          {/* Right - Contribution graph + repos */}
-          <div className="lg:col-span-2 space-y-8">
-            {/* Contribution graph */}
-            <div className="bg-default border border-border rounded-md p-6">
+          <div className="lg:col-span-2 space-y-8 hero-slide-up" style={{ animationDelay: "0.3s" }}>
+            <div className="bg-default border border-border rounded-md p-6 hover:shadow-[0_10px_30px_rgba(0,0,0,0.3)] transition-shadow duration-300">
               <h3 className="text-sm text-gh-secondary font-mono uppercase tracking-wider mb-4">
                 Contribution Activity
               </h3>
@@ -178,13 +177,12 @@ export default function Projects() {
               )}
             </div>
 
-            {/* Filter tabs */}
             <div className="flex items-center gap-4 border-b border-border pb-0 overflow-x-auto">
               {categories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setFilter(cat)}
-                  className={`px-4 py-2 text-sm font-mono transition-colors whitespace-nowrap ${
+                  className={`px-4 py-2 text-sm font-mono transition-colors whitespace-nowrap hover:scale-105 active:scale-95 duration-200 ${
                     filter === cat
                       ? "tab-active text-gh-text"
                       : "text-gh-secondary hover:text-gh-text"
@@ -195,7 +193,6 @@ export default function Projects() {
               ))}
             </div>
 
-            {/* Repo cards */}
             <div className="space-y-4">
               {filteredRepos.map((repo) => (
                 <a
@@ -203,7 +200,7 @@ export default function Projects() {
                   href={repo.homepage || repo.html_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="repo-card block group"
+                  className="repo-card block group hover:scale-[1.02] hover:shadow-[0_10px_30px_rgba(88,166,255,0.2)] transition-all duration-200"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="min-w-0 flex-1">
@@ -252,7 +249,7 @@ export default function Projects() {
                     </div>
                     <div className="flex-shrink-0">
                       {repo.homepage && (
-                        <span className="btn-outline text-xs">Live Demo ↗</span>
+                        <span className="btn-outline text-xs">Live Demo</span>
                       )}
                     </div>
                   </div>
@@ -260,8 +257,7 @@ export default function Projects() {
               ))}
             </div>
 
-            {/* CTA */}
-            <div className="bg-default border border-border rounded-md p-8 text-center">
+            <div className="bg-default border border-border rounded-md p-8 text-center hover:shadow-[0_15px_40px_rgba(0,0,0,0.3)] transition-shadow duration-300">
               <h3 className="text-xl font-bold text-gh-text mb-2 font-mono">
                 Want to see more?
               </h3>
@@ -272,9 +268,9 @@ export default function Projects() {
                 href="https://github.com/Eordinary01?tab=repositories"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-primary inline-block"
+                className="btn-primary inline-block hover:scale-105 active:scale-95 transition-all duration-200"
               >
-                View All Repositories →
+                View All Repositories
               </a>
             </div>
           </div>

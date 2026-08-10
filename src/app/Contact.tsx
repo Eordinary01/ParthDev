@@ -52,14 +52,14 @@ export default function Contact() {
   return (
     <section id="contact" className="section-spacing bg-canvas">
       <div className="container-main">
-        <div className="flex items-center gap-3 mb-8">
+        <div className="flex items-center gap-3 mb-8 hero-slide-up">
           <span className="text-gh-green font-mono text-sm">$</span>
           <h2 className="text-3xl font-bold text-gh-text font-mono">./contact.sh</h2>
         </div>
-        <div className="h-px bg-border mb-12" />
+        <div className="h-px bg-border mb-12 hero-slide-up" style={{ animationDelay: "0.1s" }} />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div>
+          <div className="hero-slide-up" style={{ animationDelay: "0.2s" }}>
             <Terminal title="parth@dev:~/contact" className="h-full">
               <div className="space-y-4">
                 {cmdHistory.map((cmd, i) => (
@@ -132,7 +132,7 @@ export default function Contact() {
           </div>
 
           <div className="space-y-4">
-            <div className="bg-default border border-border rounded-md p-6">
+            <div className="bg-default border border-border rounded-md p-6 hero-slide-up" style={{ animationDelay: "0.3s" }}>
               <h3 className="text-lg font-bold text-gh-text font-mono mb-4">
                 Contact Information
               </h3>
@@ -148,7 +148,7 @@ export default function Contact() {
                     href={info.link}
                     target={info.link.startsWith("http") ? "_blank" : "_self"}
                     rel={info.link.startsWith("http") ? "noopener noreferrer" : ""}
-                    className="flex items-center gap-4 p-3 border border-border rounded-md hover:border-gh-muted hover:bg-subtle transition-all group"
+                    className="flex items-center gap-4 p-3 border border-border rounded-md hover:border-gh-muted hover:bg-subtle transition-all duration-200 group"
                   >
                     <span className="w-10 h-10 flex items-center justify-center bg-subtle border border-border rounded-md text-gh-secondary group-hover:text-gh-text group-hover:border-gh-muted transition-colors font-mono">
                       {info.icon}
@@ -166,7 +166,7 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="bg-default border border-border rounded-md p-6">
+            <div className="bg-default border border-border rounded-md p-6 hero-slide-up" style={{ animationDelay: "0.4s" }}>
               <div className="flex items-center gap-2 mb-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-gh-green animate-pulse" />
                 <span className="text-sm text-gh-green font-mono font-bold">
@@ -178,7 +178,7 @@ export default function Contact() {
               </p>
             </div>
 
-            <div className="bg-default border border-border rounded-md p-6">
+            <div className="bg-default border border-border rounded-md p-6 hero-slide-up" style={{ animationDelay: "0.5s" }}>
               <h3 className="text-sm text-gh-secondary font-mono uppercase tracking-wider mb-4">
                 Quick Connect
               </h3>

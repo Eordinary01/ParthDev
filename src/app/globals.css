@@ -373,6 +373,34 @@ code, pre, .mono {
   animation: heroSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+/* Floating background animations */
+@keyframes floatSlow {
+  0%, 100% { transform: scale(1) translate(0, 0); }
+  50% { transform: scale(1.2) translate(50px, 30px); }
+}
+
+@keyframes floatSlowReverse {
+  0%, 100% { transform: scale(1) translate(0, 0); }
+  50% { transform: scale(1.3) translate(-50px, -30px); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { text-shadow: 0 0 20px rgba(88, 166, 255, 0.5); }
+  50% { text-shadow: 0 0 40px rgba(88, 166, 255, 0.8); }
+}
+
+.animate-float-slow {
+  animation: floatSlow 8s ease-in-out infinite;
+}
+
+.animate-float-slow-reverse {
+  animation: floatSlowReverse 10s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
 /* Featured project card */
 .featured-card {
   border: 1px solid var(--border);

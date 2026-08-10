@@ -44,18 +44,22 @@ export default function Skills() {
   }, []);
 
   return (
-    <section id="skills" className="section-spacing bg-canvas">
-      <div className="container-main">
-        <div className="flex items-center gap-3 mb-8">
+    <section id="skills" className="section-spacing bg-canvas relative overflow-hidden">
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-10 left-10 w-64 h-64 bg-gh-blue rounded-full blur-3xl animate-float-slow" />
+        <div className="absolute bottom-10 right-10 w-96 h-96 bg-gh-purple rounded-full blur-3xl animate-float-slow-reverse" />
+      </div>
+
+      <div className="container-main relative z-10">
+        <div className="flex items-center gap-3 mb-8 hero-slide-up">
           <span className="text-gh-green font-mono text-sm">$</span>
           <h2 className="text-3xl font-bold text-gh-text font-mono">cat skills.json</h2>
         </div>
-        <div className="h-px bg-border mb-12" />
+        <div className="h-px bg-border mb-12 hero-slide-up" style={{ animationDelay: "0.1s" }} />
 
         <div className="max-w-4xl space-y-6">
-          {/* Language bar */}
           {topLanguages.length > 0 && (
-            <div className="bg-default border border-border rounded-md p-6">
+            <div className="bg-default border border-border rounded-md p-6 hover:shadow-[0_10px_30px_rgba(0,0,0,0.3)] transition-shadow duration-300 hero-slide-up" style={{ animationDelay: "0.2s" }}>
               <h3 className="text-sm text-gh-secondary font-mono uppercase tracking-wider mb-4">
                 Most Used Languages
               </h3>
@@ -64,7 +68,7 @@ export default function Skills() {
                   <div
                     key={lang.name}
                     style={{ width: `${lang.percentage}%`, backgroundColor: lang.color }}
-                    className="transition-all duration-700"
+                    className="transition-all duration-700 hover:opacity-80 hover:scale-y-150"
                     title={`${lang.name}: ${lang.percentage}%`}
                   />
                 ))}
@@ -72,7 +76,10 @@ export default function Skills() {
               <div className="flex flex-wrap gap-4">
                 {topLanguages.map((lang) => (
                   <div key={lang.name} className="flex items-center gap-1.5">
-                    <span className="lang-dot" style={{ backgroundColor: lang.color }} />
+                    <span
+                      className="lang-dot animate-pulse"
+                      style={{ backgroundColor: lang.color }}
+                    />
                     <span className="text-sm text-gh-secondary font-mono">{lang.name}</span>
                     <span className="text-xs text-gh-muted font-mono">{lang.percentage}%</span>
                   </div>
@@ -81,8 +88,9 @@ export default function Skills() {
             </div>
           )}
 
-          {/* Skill heatmap */}
-          <SkillHeatmap skills={skillData} />
+          <div className="hero-slide-up" style={{ animationDelay: "0.3s" }}>
+            <SkillHeatmap skills={skillData} />
+          </div>
         </div>
       </div>
     </section>
