@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { fetchGitHubRepos, getTopLanguages } from "../../lib/github";
 import type { GitHubRepo } from "../../lib/github";
 import SkillHeatmap from "./SkillHeatmap";
+import { useTheme } from "../context/ThemeContext";
 
 const skillData = [
   { name: "JavaScript", level: 95, color: "#f1e05a" },
@@ -29,6 +30,7 @@ const fallbackRepos: GitHubRepo[] = [
 ];
 
 export default function Skills() {
+  const { config } = useTheme();
   const [topLanguages, setTopLanguages] = useState<{ name: string; color: string; percentage: number }[]>([]);
 
   useEffect(() => {
@@ -46,8 +48,8 @@ export default function Skills() {
   return (
     <section id="skills" className="section-spacing bg-canvas relative overflow-hidden">
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-10 left-10 w-64 h-64 bg-gh-blue rounded-full blur-3xl animate-float-slow" />
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-gh-purple rounded-full blur-3xl animate-float-slow-reverse" />
+        <div className="absolute top-10 left-10 w-64 h-64 rounded-full blur-3xl animate-float-slow" style={{ background: config.accent }} />
+        <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full blur-3xl animate-float-slow-reverse" style={{ background: config.accentSecondary }} />
       </div>
 
       <div className="container-main relative z-10">

@@ -26,6 +26,13 @@
   --accent-red: #f85149;
   --accent-orange: #d29922;
   --accent-cyan: #39d2c0;
+  /* Dynamic theme vars — updated by ThemeContext on switch */
+  --theme-accent: #bc8cff;
+  --theme-accent-glow: rgba(188,140,255,0.4);
+  --theme-accent-secondary: #d2a8ff;
+  --theme-border-glow: rgba(188,140,255,0.35);
+  --theme-selection-bg: rgba(188,140,255,0.3);
+  --theme-particle-hex: #bc8cff;
 }
 
 html {
@@ -42,7 +49,7 @@ body {
 }
 
 ::selection {
-  background: rgba(88, 166, 255, 0.3);
+  background: var(--theme-selection-bg);
   color: #ffffff;
 }
 
@@ -416,7 +423,110 @@ code, pre, .mono {
   transform: translateY(-2px);
 }
 
-/* Reduced motion */
+/* Theme overlay — per-stack unique wipes */
+.theme-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  will-change: transform;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transform-origin: center;
+}
+
+/* Frontend: pixel grid dissolve */
+.overlay-grid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: 1px;
+  background: transparent;
+}
+.overlay-grid-tile {
+  background: inherit;
+  will-change: transform, opacity;
+}
+
+/* Backend: venetian/code bars */
+.overlay-bars {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.overlay-bar {
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+  padding-left: 6vw;
+  transform-origin: left center;
+  will-change: transform;
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+}
+.overlay-bar-code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(0.7rem, 1.1vw, 0.85rem);
+  color: rgba(255,255,255,0.92);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* Fullstack: radial iris */
+.overlay-iris {
+  position: absolute;
+  inset: 0;
+  will-change: clip-path, transform;
+}
+
+.theme-overlay-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  gap: 8px;
+}
+
+.theme-overlay-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(2.2rem, 9vw, 5.4rem);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.96;
+  text-shadow: 0 4px 50px rgba(0,0,0,0.45);
+  white-space: nowrap;
+  will-change: transform, opacity;
+}
+
+.theme-overlay-sublabel {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(0.7rem, 1.6vw, 0.85rem);
+  font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+/* GSAP hero initial hidden state — revealed by timeline */
+.gsap-hero-hidden {
+  visibility: hidden;
+}
+
+/* Theme card active pulse */
+@keyframes themeCardPulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--theme-accent-glow); }
+  50% { box-shadow: 0 0 24px 4px var(--theme-accent-glow); }
+}
+
+/* Reduced motion: keep wipe but make it instant-ish (0.35s) instead of disabling */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

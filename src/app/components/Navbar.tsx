@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Link as ScrollLink } from "react-scroll";
+import { useTheme } from "../context/ThemeContext";
 
 const navItems = [
   { id: "home", label: "~/home" },
@@ -11,6 +12,7 @@ const navItems = [
 ];
 
 export default function Navbar() {
+  const { config } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [isScrolled, setIsScrolled] = useState(false);
@@ -40,7 +42,8 @@ export default function Navbar() {
     <header
       className={`fixed w-full z-50 border-b transition-all duration-200 ${
         isScrolled ? "bg-default/95 backdrop-blur-sm" : "bg-transparent"
-      } border-border`}
+      }`}
+      style={{ borderColor: activeSection !== "home" ? `${config.accent}22` : "var(--border)" }}
     >
       <nav className="container-main flex items-center justify-between h-16">
         {/* Logo */}
@@ -68,10 +71,9 @@ export default function Navbar() {
               smooth
               duration={300}
               className={`px-3 py-1.5 text-sm font-mono rounded-md cursor-pointer transition-colors ${
-                activeSection === item.id
-                  ? "text-gh-text bg-subtle"
-                  : "text-gh-secondary hover:text-gh-text"
+                activeSection === item.id ? "text-gh-text bg-subtle" : "text-gh-secondary hover:text-gh-text"
               }`}
+              style={activeSection === item.id ? { boxShadow: `inset 0 -2px 0 ${config.accent}`, borderRadius: 6 } : undefined}
             >
               {item.label}
             </ScrollLink>

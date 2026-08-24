@@ -25,7 +25,7 @@ export default function SkillHeatmap({ skills }: SkillHeatmapProps) {
       <h3 className="text-sm text-gh-secondary font-mono uppercase tracking-wider mb-4">
         Skill Proficiency Heatmap
       </h3>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+      <div data-scroll-stagger className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
         {skills.map((skill) => (
           <div
             key={skill.name}

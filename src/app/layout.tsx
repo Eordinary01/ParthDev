@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import ScrollProgress from "./components/ScrollProgress";
+import { ThemeProvider } from "./context/ThemeContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,9 +27,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.className} antialiased`}>
-        <div className="relative w-full min-h-screen">
-          <Navbar />
-          {children}
+        <ThemeProvider>
+          <ScrollProgress />
+          <div className="relative w-full min-h-screen">
+            <Navbar />
+            {children}
 
           <footer className="border-t border-border bg-canvas">
             <div className="container-main py-12">
@@ -48,7 +52,8 @@ export default function RootLayout({
               </div>
             </div>
           </footer>
-        </div>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );
